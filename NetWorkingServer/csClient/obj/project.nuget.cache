@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "lvUfEqjfZyGpEideXgGXHPnfL2meSYER/GJOQRfwtJNxZxMOrJakPQVdA+Ga9yfnZ+4CRsYnk86A8PJgcWevHA==",
+  "success": true,
+  "projectFilePath": "D:\\Github\\NetWorkingServer\\NetWorkingServer\\csClient\\csClient.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\smr\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

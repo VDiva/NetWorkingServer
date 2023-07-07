@@ -11,7 +11,9 @@ namespace NetWorkingServer
         public static void Main(string[] args)
         {       
             DebugLogSetting debug=new DebugLogSetting();
-            NetWorking working = new NetWorking();
+            
+            NetWorking<IMessage> net=new NetWorking<IMessage>();
+            net.NetAsServer("127.0.0.1", 8888, 1000);
             Console.ReadKey();
         }
     }
