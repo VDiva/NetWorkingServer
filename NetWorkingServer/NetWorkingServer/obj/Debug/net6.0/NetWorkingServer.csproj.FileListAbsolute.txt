@@ -1,0 +1,15 @@
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Debug\net6.0\NetWorkingServer.csproj.AssemblyReference.cache
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Debug\net6.0\NetWorkingServer.GeneratedMSBuildEditorConfig.editorconfig
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Debug\net6.0\NetWorkingServer.AssemblyInfoInputs.cache
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Debug\net6.0\NetWorkingServer.AssemblyInfo.cs
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Debug\net6.0\NetWorkingServer.csproj.CoreCompileInputs.cache
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\bin\Debug\net6.0\NetWorkingServer.exe
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\bin\Debug\net6.0\NetWorkingServer.deps.json
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\bin\Debug\net6.0\NetWorkingServer.runtimeconfig.json
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\bin\Debug\net6.0\NetWorkingServer.dll
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\bin\Debug\net6.0\NetWorkingServer.pdb
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Debug\net6.0\NetWorkingServer.dll
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Debug\net6.0\refint\NetWorkingServer.dll
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Debug\net6.0\NetWorkingServer.pdb
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Debug\net6.0\NetWorkingServer.genruntimeconfig.cache
+D:\ME\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Debug\net6.0\ref\NetWorkingServer.dll
