@@ -1,10 +1,10 @@
 ﻿using System.Net;
 using System.Net.Sockets;
-
+using Douyin;
 using Newtonsoft.Json;
 namespace NetWorkingServer
 {
-    public class NetWorking<T> where T:IMessage 
+    public class NetWorking<T> where T:IMessage , new()
     {
         Socket socket;
         SocketAsyncEventArgs saeaAccpet;
@@ -16,32 +16,33 @@ namespace NetWorkingServer
         
         public NetWorking()
         {
-            
+            IMsg = new T();
             saeaAccpet = new SocketAsyncEventArgs();
             saeaReceive = new SocketAsyncEventArgs();
             saeaSend = new SocketAsyncEventArgs();
         }
         public void NetAsServer(string IP,int Port,int Num)
         {
+            
             saeaAccpet = new SocketAsyncEventArgs();
             saeaAccpet.Completed += new EventHandler<SocketAsyncEventArgs>(Accpet_Comlpleted);
             socket=new Socket(AddressFamily.InterNetwork,SocketType.Stream, ProtocolType.Tcp);
             socket.Bind(new IPEndPoint(IPAddress.Parse(IP), Port));
             socket.Listen(Num);
             saeaReceive.SetBuffer(new byte[4096]);
-           
-            
             StartAccpet();
         }
 
 
         public void NetAsClient(string IP,int Port)
         {
+            
             saeaConnect = new SocketAsyncEventArgs();
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socket.Connect(new IPEndPoint(IPAddress.Parse(IP),Port));
             Client<T> client = new Client<T>(socket, Index);     
-
+            IMsg.OnConnectToServer(client);
+            
         }
 
 
@@ -58,18 +59,20 @@ namespace NetWorkingServer
 
         void AccpetProcessConnect()
         {
-            Client<T> client = new Client<T>(saeaAccpet.AcceptSocket, 1);
+            Client<T> client = new Client<T>(saeaAccpet.AcceptSocket, Index);
+            
             IMsg.OnClientAccpet(client);
             saeaAccpet.AcceptSocket = null;
             StartAccpet();
             Index += 1;
+            client.Send(new Data { Content = "你好啊" });
+            DebugLog.LogWarn("发送一条消息");
         }
 
 
         void Accpet_Comlpleted(object sender, SocketAsyncEventArgs e)
         {
             AccpetProcessConnect();
-            DebugLog.LogWarn("玩家IP" + (sender as Socket).RemoteEndPoint + "连上了服务器");
         }
 
     }

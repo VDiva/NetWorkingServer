@@ -20,3 +20,4 @@ D:\Github\NetWorkingServer\NetWorkingServer\csClient\obj\Debug\net6.0\refint\csC
 D:\Github\NetWorkingServer\NetWorkingServer\csClient\obj\Debug\net6.0\csClient.pdb
 D:\Github\NetWorkingServer\NetWorkingServer\csClient\obj\Debug\net6.0\csClient.genruntimeconfig.cache
 D:\Github\NetWorkingServer\NetWorkingServer\csClient\obj\Debug\net6.0\ref\csClient.dll
+D:\Github\NetWorkingServer\NetWorkingServer\csClient\bin\Debug\net6.0\Google.Protobuf.dll

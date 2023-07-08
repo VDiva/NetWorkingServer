@@ -12,7 +12,7 @@ namespace NetWorkingServer
         {       
             DebugLogSetting debug=new DebugLogSetting();
             
-            NetWorking<IMessage> net=new NetWorking<IMessage>();
+            NetWorking<Message> net=new NetWorking<Message>();
             net.NetAsServer("127.0.0.1", 8888, 1000);
             Console.ReadKey();
         }

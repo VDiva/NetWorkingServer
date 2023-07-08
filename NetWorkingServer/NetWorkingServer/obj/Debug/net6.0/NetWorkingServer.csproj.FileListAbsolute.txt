@@ -30,3 +30,4 @@ D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Debug\net6.0\Ne
 D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Debug\net6.0\ref\NetWorkingServer.dll
 D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\bin\Debug\net6.0\Newtonsoft.Json.dll
 D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Debug\net6.0\NetWorkingServer.csproj.CopyComplete
+D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\bin\Debug\net6.0\Google.Protobuf.dll

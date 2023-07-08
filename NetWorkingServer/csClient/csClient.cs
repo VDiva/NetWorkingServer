@@ -10,8 +10,10 @@ namespace csClient
     {
         static void Main(string[] args)
         {
-            NetWorking<IMessage> net=new NetWorking<IMessage>();
+            NetWorking<Message> net=new NetWorking<Message>();
+            DebugLogSetting setting = new DebugLogSetting();
             net.NetAsClient("127.0.0.1", 8888);
+            Console.ReadKey();
         }
     }
 }
