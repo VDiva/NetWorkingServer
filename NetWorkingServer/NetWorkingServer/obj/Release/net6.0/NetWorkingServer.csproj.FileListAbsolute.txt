@@ -1,0 +1,12 @@
+D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\bin\Release\net6.0\NetWorkingServer.deps.json
+D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\bin\Release\net6.0\NetWorkingServer.dll
+D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\bin\Release\net6.0\NetWorkingServer.pdb
+D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Release\net6.0\NetWorkingServer.csproj.AssemblyReference.cache
+D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Release\net6.0\NetWorkingServer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Release\net6.0\NetWorkingServer.AssemblyInfoInputs.cache
+D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Release\net6.0\NetWorkingServer.AssemblyInfo.cs
+D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Release\net6.0\NetWorkingServer.csproj.CoreCompileInputs.cache
+D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Release\net6.0\NetWorkingServer.dll
+D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Release\net6.0\refint\NetWorkingServer.dll
+D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Release\net6.0\NetWorkingServer.pdb
+D:\Github\NetWorkingServer\NetWorkingServer\NetWorkingServer\obj\Release\net6.0\ref\NetWorkingServer.dll

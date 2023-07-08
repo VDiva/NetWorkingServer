@@ -1,6 +1,3 @@
-D:\Github\NetWorkingServer\NetWorkingServer\csClient\bin\Debug\net6.0\NetWorkingServer.deps.json
-D:\Github\NetWorkingServer\NetWorkingServer\csClient\bin\Debug\net6.0\NetWorkingServer.runtimeconfig.json
-D:\Github\NetWorkingServer\NetWorkingServer\csClient\bin\Debug\net6.0\NetWorkingServer.exe
 D:\Github\NetWorkingServer\NetWorkingServer\csClient\bin\Debug\net6.0\csClient.exe
 D:\Github\NetWorkingServer\NetWorkingServer\csClient\bin\Debug\net6.0\csClient.deps.json
 D:\Github\NetWorkingServer\NetWorkingServer\csClient\bin\Debug\net6.0\csClient.runtimeconfig.json

@@ -1,7 +1,9 @@
 ﻿
 using System.Net.Sockets;
-
+using Newtonsoft.Json;
 using System.Text.Json;
+using System.Text;
+
 namespace NetWorkingServer
 {
     public class Client<T> where T : IMessage, new()
@@ -43,7 +45,7 @@ namespace NetWorkingServer
                 byte[] bytes = new byte[saeaReceive.BytesTransferred];
                 Buffer.BlockCopy(saeaReceive.Buffer, 0, bytes, 0, saeaReceive.BytesTransferred);
                 byte[] data = Tool.UnPacket(ref bytes);
-                DebugLog.LogWarn("收到消息");
+                
                 IMsg.OnMessage(data, this);
 
                 StartReceive();
@@ -70,8 +72,8 @@ namespace NetWorkingServer
 
         public void Send(object data)
         {
-            DebugLog.LogWarn(JsonSerializer.SerializeToUtf8Bytes(data).Length.ToString());
-            Send(JsonSerializer.SerializeToUtf8Bytes(data));
+            
+            Send(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(data)));
 
         }
 

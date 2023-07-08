@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
-using Douyin;
+
 using Newtonsoft.Json;
 namespace NetWorkingServer
 {
@@ -30,11 +30,12 @@ namespace NetWorkingServer
             socket.Bind(new IPEndPoint(IPAddress.Parse(IP), Port));
             socket.Listen(Num);
             saeaReceive.SetBuffer(new byte[4096]);
+            DebugLog.LogWarn("服务器已开启 等待链接中.....");
             StartAccpet();
         }
 
 
-        public void NetAsClient(string IP,int Port)
+        public Client<T> NetAsClient(string IP,int Port)
         {
             
             saeaConnect = new SocketAsyncEventArgs();
@@ -42,7 +43,7 @@ namespace NetWorkingServer
             socket.Connect(new IPEndPoint(IPAddress.Parse(IP),Port));
             Client<T> client = new Client<T>(socket, Index);     
             IMsg.OnConnectToServer(client);
-            
+            return client;
         }
 
 
@@ -65,8 +66,7 @@ namespace NetWorkingServer
             saeaAccpet.AcceptSocket = null;
             StartAccpet();
             Index += 1;
-            client.Send(new Data { Content = "你好啊" });
-            DebugLog.LogWarn("发送一条消息");
+            
         }
 
 
