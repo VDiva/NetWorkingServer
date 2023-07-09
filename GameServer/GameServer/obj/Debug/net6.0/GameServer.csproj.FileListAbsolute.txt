@@ -17,3 +17,4 @@ D:\Github\NetWorkingServer\GameServer\GameServer\obj\Debug\net6.0\GameServer.pdb
 D:\Github\NetWorkingServer\GameServer\GameServer\obj\Debug\net6.0\GameServer.genruntimeconfig.cache
 D:\Github\NetWorkingServer\GameServer\GameServer\obj\Debug\net6.0\ref\GameServer.dll
 D:\Github\NetWorkingServer\GameServer\GameServer\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Github\NetWorkingServer\GameServer\GameServer\bin\Debug\net6.0\Google.Protobuf.dll

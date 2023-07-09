@@ -11,8 +11,7 @@ namespace GameServer
         static void Main(string[] args)
         {
             DebugLogSetting logSetting = new DebugLogSetting();
-            NetWorking<Message> net = new NetWorking<Message>();
-            net.NetAsServer("127.0.0.1", 8888, 100);
+            ClientManager.Instance.Init("127.0.0.1", 8888, 100);
             Console.ReadKey();
 
            

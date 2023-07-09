@@ -44,9 +44,9 @@ namespace NetWorkingServer
             {
                 byte[] bytes = new byte[saeaReceive.BytesTransferred];
                 Buffer.BlockCopy(saeaReceive.Buffer, 0, bytes, 0, saeaReceive.BytesTransferred);
-                byte[] data = Tool.UnPacket(ref bytes);
                 
-                IMsg.OnMessage(data, this);
+
+                IMsg.OnMessage(bytes, this);
 
                 StartReceive();
 
@@ -69,19 +69,15 @@ namespace NetWorkingServer
 
         }
 
-
-        public void Send(object data)
+        public void SetSendMessageBuffer(byte[] buffer)
         {
-            
-            Send(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(data)));
-
+            saeaSend.SetBuffer(buffer,0,buffer.Length);
         }
 
-        public void Send(byte[] data)
+        public void SendMessage()
         {
-            byte[] bytes = Tool.Packet(ref data);
-            saeaSend.SetBuffer(bytes,0,bytes.Length);
             socket.SendAsync(saeaSend);
         }
+        
     }
 }

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "rXAT9rLbyqchntMagto5LO7MNgbG9GvGFEI4XHu7dEIADJak+vYWrBw3ehDUHRCtwB82FUOBxnjZgH8tUgKeig==",
+  "dgSpecHash": "ftrwq8oMwSi1jzQV/ZQH5xjXyWlnFXn3KAdTwFlf2YF0h+2n7c2StyKacvohCkElgT9w+C5v4FW7xhrLZ9y00Q==",
   "success": true,
   "projectFilePath": "D:\\Github\\NetWorkingServer\\GameServer\\GameServer\\GameServer.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\smr\\.nuget\\packages\\google.protobuf\\3.23.4\\google.protobuf.3.23.4.nupkg.sha512",
     "C:\\Users\\smr\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
