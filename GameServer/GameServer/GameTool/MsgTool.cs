@@ -3,9 +3,10 @@ using NetWorkingServer;
 using Newtonsoft.Json;
 using System.Text;
 
-namespace GameServer
+
+namespace GameServer.GameTool
 {
-    public static class GameTool
+    public static class MsgTool
     {
         
 

@@ -24,37 +24,36 @@ namespace GameData {
     static GameDataReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg5HYW1lRGF0YS5wcm90bxIIR2FtZURhdGEiywEKBERhdGESLgoNR2FtZVRy",
+            "Cg5HYW1lRGF0YS5wcm90bxIIR2FtZURhdGEitQEKBERhdGESLgoNR2FtZVRy",
             "YW5zZnJvbRgBIAEoCzIXLkdhbWVEYXRhLkdhbWVUcmFuc2Zyb20SMAoOQW5p",
             "bVBhcmFtZXRlcnMYAiABKAsyGC5HYW1lRGF0YS5BbmltUGFyYW1ldGVycxIi",
             "CgdNc2dUeXBlGAMgASgOMhEuR2FtZURhdGEuTXNnVHlwZRILCgNtc2cYBCAB",
-            "KAkSCgoCSUQYBSABKAUSJAoIam9pbkRhdGEYBiABKAsyEi5HYW1lRGF0YS5K",
-            "b2luRGF0YSJ7Cg1HYW1lVHJhbnNmcm9tEiQKCHBvc2l0aW9uGAEgASgLMhIu",
-            "R2FtZURhdGEuUG9zaXRpb24SJAoIcmF0YXRpb24YAiABKAsyEi5HYW1lRGF0",
-            "YS5SYXRhdGlvbhIeCgVzY2FsZRgDIAEoCzIPLkdhbWVEYXRhLlNjYWxlIi0K",
-            "CFBvc2l0aW9uEiEKBnZlY3RvchgBIAEoCzIRLkdhbWVEYXRhLlZlY3RvcjMi",
-            "LQoIUmF0YXRpb24SIQoGdmVjdG9yGAEgASgLMhEuR2FtZURhdGEuVmVjdG9y",
-            "MyIqCgVTY2FsZRIhCgZ2ZWN0b3IYASABKAsyES5HYW1lRGF0YS5WZWN0b3Iz",
-            "IjYKDkFuaW1QYXJhbWV0ZXJzEiQKCGFuaW1EYXRhGAEgAygLMhIuR2FtZURh",
-            "dGEuQW5pbURhdGEibAoIQW5pbURhdGESFAoMQW5pbURhdGFOYW1lGAEgASgJ",
-            "EhQKDEFuaW1EYXRhVHlwZRgCIAEoBRIRCglmbG9hdERhdGEYAyABKAISDwoH",
-            "aW50RGF0YRgEIAEoBRIQCghib29sRGF0YRgFIAEoCCIqCgdWZWN0b3IzEgkK",
-            "AVgYASABKAISCQoBWRgCIAEoAhIJCgFaGAMgASgCIhYKCEpvaW5EYXRhEgoK",
-            "AklEGAEgASgFKlkKB01zZ1R5cGUSCwoHQW5pbU1zZxAAEhAKDFRyYW5zZm9y",
-            "bU1zZxABEg0KCVN0cmluZ01zZxACEhMKD0FsbG9jYXRpb25JRE1zZxADEgsK",
-            "B0pvaW5Nc2cQBWIGcHJvdG8z"));
+            "KAkSCgoCSUQYBSABKAUSDgoGUm9vbUlEGAYgASgFInsKDUdhbWVUcmFuc2Zy",
+            "b20SJAoIcG9zaXRpb24YASABKAsyEi5HYW1lRGF0YS5Qb3NpdGlvbhIkCghy",
+            "YXRhdGlvbhgCIAEoCzISLkdhbWVEYXRhLlJhdGF0aW9uEh4KBXNjYWxlGAMg",
+            "ASgLMg8uR2FtZURhdGEuU2NhbGUiLQoIUG9zaXRpb24SIQoGdmVjdG9yGAEg",
+            "ASgLMhEuR2FtZURhdGEuVmVjdG9yMyItCghSYXRhdGlvbhIhCgZ2ZWN0b3IY",
+            "ASABKAsyES5HYW1lRGF0YS5WZWN0b3IzIioKBVNjYWxlEiEKBnZlY3RvchgB",
+            "IAEoCzIRLkdhbWVEYXRhLlZlY3RvcjMiNgoOQW5pbVBhcmFtZXRlcnMSJAoI",
+            "YW5pbURhdGEYASADKAsyEi5HYW1lRGF0YS5BbmltRGF0YSJsCghBbmltRGF0",
+            "YRIUCgxBbmltRGF0YU5hbWUYASABKAkSFAoMQW5pbURhdGFUeXBlGAIgASgF",
+            "EhEKCWZsb2F0RGF0YRgDIAEoAhIPCgdpbnREYXRhGAQgASgFEhAKCGJvb2xE",
+            "YXRhGAUgASgIIioKB1ZlY3RvcjMSCQoBWBgBIAEoAhIJCgFZGAIgASgCEgkK",
+            "AVoYAyABKAIqhwEKB01zZ1R5cGUSCwoHQW5pbU1zZxAAEhAKDFRyYW5zZm9y",
+            "bU1zZxABEg0KCVN0cmluZ01zZxACEhMKD0FsbG9jYXRpb25JRE1zZxADEg8K",
+            "C0pvaW5Sb29tTXNnEAUSFQoRSm9pblJhbmRvbVJvb21Nc2cQBhIRCg1DcmVh",
+            "dGVSb29tTXNnEAdiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::GameData.MsgType), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameData.Data), global::GameData.Data.Parser, new[]{ "GameTransfrom", "AnimParameters", "MsgType", "Msg", "ID", "JoinData" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameData.Data), global::GameData.Data.Parser, new[]{ "GameTransfrom", "AnimParameters", "MsgType", "Msg", "ID", "RoomID" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameData.GameTransfrom), global::GameData.GameTransfrom.Parser, new[]{ "Position", "Ratation", "Scale" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameData.Position), global::GameData.Position.Parser, new[]{ "Vector" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameData.Ratation), global::GameData.Ratation.Parser, new[]{ "Vector" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameData.Scale), global::GameData.Scale.Parser, new[]{ "Vector" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameData.AnimParameters), global::GameData.AnimParameters.Parser, new[]{ "AnimData" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameData.AnimData), global::GameData.AnimData.Parser, new[]{ "AnimDataName", "AnimDataType", "FloatData", "IntData", "BoolData" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameData.Vector3), global::GameData.Vector3.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameData.JoinData), global::GameData.JoinData.Parser, new[]{ "ID" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameData.Vector3), global::GameData.Vector3.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null)
           }));
     }
     #endregion
@@ -66,7 +65,9 @@ namespace GameData {
     [pbr::OriginalName("TransformMsg")] TransformMsg = 1,
     [pbr::OriginalName("StringMsg")] StringMsg = 2,
     [pbr::OriginalName("AllocationIDMsg")] AllocationIdmsg = 3,
-    [pbr::OriginalName("JoinMsg")] JoinMsg = 5,
+    [pbr::OriginalName("JoinRoomMsg")] JoinRoomMsg = 5,
+    [pbr::OriginalName("JoinRandomRoomMsg")] JoinRandomRoomMsg = 6,
+    [pbr::OriginalName("CreateRoomMsg")] CreateRoomMsg = 7,
   }
 
   #endregion
@@ -111,7 +112,7 @@ namespace GameData {
       msgType_ = other.msgType_;
       msg_ = other.msg_;
       iD_ = other.iD_;
-      joinData_ = other.joinData_ != null ? other.joinData_.Clone() : null;
+      roomID_ = other.roomID_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -181,15 +182,15 @@ namespace GameData {
       }
     }
 
-    /// <summary>Field number for the "joinData" field.</summary>
-    public const int JoinDataFieldNumber = 6;
-    private global::GameData.JoinData joinData_;
+    /// <summary>Field number for the "RoomID" field.</summary>
+    public const int RoomIDFieldNumber = 6;
+    private int roomID_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::GameData.JoinData JoinData {
-      get { return joinData_; }
+    public int RoomID {
+      get { return roomID_; }
       set {
-        joinData_ = value;
+        roomID_ = value;
       }
     }
 
@@ -213,7 +214,7 @@ namespace GameData {
       if (MsgType != other.MsgType) return false;
       if (Msg != other.Msg) return false;
       if (ID != other.ID) return false;
-      if (!object.Equals(JoinData, other.JoinData)) return false;
+      if (RoomID != other.RoomID) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -226,7 +227,7 @@ namespace GameData {
       if (MsgType != global::GameData.MsgType.AnimMsg) hash ^= MsgType.GetHashCode();
       if (Msg.Length != 0) hash ^= Msg.GetHashCode();
       if (ID != 0) hash ^= ID.GetHashCode();
-      if (joinData_ != null) hash ^= JoinData.GetHashCode();
+      if (RoomID != 0) hash ^= RoomID.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -265,9 +266,9 @@ namespace GameData {
         output.WriteRawTag(40);
         output.WriteInt32(ID);
       }
-      if (joinData_ != null) {
-        output.WriteRawTag(50);
-        output.WriteMessage(JoinData);
+      if (RoomID != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(RoomID);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -299,9 +300,9 @@ namespace GameData {
         output.WriteRawTag(40);
         output.WriteInt32(ID);
       }
-      if (joinData_ != null) {
-        output.WriteRawTag(50);
-        output.WriteMessage(JoinData);
+      if (RoomID != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(RoomID);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -328,8 +329,8 @@ namespace GameData {
       if (ID != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(ID);
       }
-      if (joinData_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(JoinData);
+      if (RoomID != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomID);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -364,11 +365,8 @@ namespace GameData {
       if (other.ID != 0) {
         ID = other.ID;
       }
-      if (other.joinData_ != null) {
-        if (joinData_ == null) {
-          JoinData = new global::GameData.JoinData();
-        }
-        JoinData.MergeFrom(other.JoinData);
+      if (other.RoomID != 0) {
+        RoomID = other.RoomID;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -411,11 +409,8 @@ namespace GameData {
             ID = input.ReadInt32();
             break;
           }
-          case 50: {
-            if (joinData_ == null) {
-              JoinData = new global::GameData.JoinData();
-            }
-            input.ReadMessage(JoinData);
+          case 48: {
+            RoomID = input.ReadInt32();
             break;
           }
         }
@@ -459,11 +454,8 @@ namespace GameData {
             ID = input.ReadInt32();
             break;
           }
-          case 50: {
-            if (joinData_ == null) {
-              JoinData = new global::GameData.JoinData();
-            }
-            input.ReadMessage(JoinData);
+          case 48: {
+            RoomID = input.ReadInt32();
             break;
           }
         }
@@ -2126,195 +2118,6 @@ namespace GameData {
           }
           case 29: {
             Z = input.ReadFloat();
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  public sealed partial class JoinData : pb::IMessage<JoinData>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<JoinData> _parser = new pb::MessageParser<JoinData>(() => new JoinData());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<JoinData> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::GameData.GameDataReflection.Descriptor.MessageTypes[8]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public JoinData() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public JoinData(JoinData other) : this() {
-      iD_ = other.iD_;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public JoinData Clone() {
-      return new JoinData(this);
-    }
-
-    /// <summary>Field number for the "ID" field.</summary>
-    public const int IDFieldNumber = 1;
-    private int iD_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int ID {
-      get { return iD_; }
-      set {
-        iD_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override bool Equals(object other) {
-      return Equals(other as JoinData);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(JoinData other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (ID != other.ID) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (ID != 0) hash ^= ID.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (ID != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(ID);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (ID != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(ID);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public int CalculateSize() {
-      int size = 0;
-      if (ID != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ID);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(JoinData other) {
-      if (other == null) {
-        return;
-      }
-      if (other.ID != 0) {
-        ID = other.ID;
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 8: {
-            ID = input.ReadInt32();
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 8: {
-            ID = input.ReadInt32();
             break;
           }
         }

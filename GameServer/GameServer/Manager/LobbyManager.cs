@@ -1,4 +1,5 @@
 ﻿using GameData;
+using GameServer.GameTool;
 using NetWorkingServer;
 
 
@@ -15,7 +16,7 @@ namespace GameServer.Manager
 
         public void JoinLobby(Client<Message> client)
         {
-            client.IsJoinLobby = true;
+            
             clients.Add(client);
         }
 
@@ -24,7 +25,7 @@ namespace GameServer.Manager
             try
             {
                 clients.Remove(client);
-                client.IsJoinLobby = false;
+               
             }
             catch (Exception ex)
             {

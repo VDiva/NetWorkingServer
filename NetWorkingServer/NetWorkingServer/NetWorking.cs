@@ -42,7 +42,7 @@ namespace NetWorkingServer
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socket.Connect(new IPEndPoint(IPAddress.Parse(IP),Port));
             Client<T> client = new Client<T>(socket, Index);     
-            IMsg.OnConnectToServer(client);
+            IMsg.OnConnectToServer(client.ID);
             return client;
         }
 

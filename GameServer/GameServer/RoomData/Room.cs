@@ -1,4 +1,5 @@
-﻿using NetWorkingServer;
+﻿using GameServer.GameTool;
+using NetWorkingServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,11 @@ namespace GameServer.RoomData
     public class Room
     {
         public int MaxPeople;
-        List<Client<Message>> clients;
-        public Room() { 
-            clients = new List<Client<Message>>();
+        List<PlayerData> playerDatas;
+        int RoomId;
+        public Room(int RoomId) {
+            this.RoomId = RoomId;
+            playerDatas = new List<PlayerData>();
         }
 
         public void Init(int MaxPeople)
@@ -20,21 +23,23 @@ namespace GameServer.RoomData
             this.MaxPeople = MaxPeople;
         }
 
-        public bool JoinRoom(Client<Message> client)
+        public bool JoinRoom(ref Msg msg)
         {
-            if(clients.Count>MaxPeople) return false;
-            client.IsJoinRoom = true;
-            clients.Add(client);
+            if(playerDatas.Count>MaxPeople) return false;
+            msg.playerData.IsJoinRoom = true;
+            msg.playerData.RoomID = RoomId;
+            playerDatas.Add(msg.playerData);
+            DebugLog.LogWarn("房间成功");
             return true;
-
         }
 
-        public void BlackRoom(Client<Message> client)
+        public void BlackRoom(ref Msg msg)
         {
             try
             {
-                client.IsJoinRoom=false;
-                clients.Remove(client);
+
+                playerDatas.Remove(msg.playerData);
+                msg.playerData.IsJoinRoom= false;
             }catch (Exception ex)
             {
                 DebugLog.LogError(ex.Message);
@@ -43,7 +48,7 @@ namespace GameServer.RoomData
 
         public void CliearRoom()
         {
-            clients.Clear();
+            playerDatas.Clear();
         }
 
 

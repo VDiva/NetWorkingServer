@@ -1,5 +1,5 @@
 ﻿using GameData;
-
+using GameServer.GameTool;
 using NetWorkingServer;
 using System.Collections.Concurrent;
 
@@ -10,76 +10,44 @@ namespace GameServer.Manager
 
         public ClientManager() { }
 
-        ConcurrentDictionary<int, Client<Message>> IDFindClient;
-
+        ConcurrentDictionary<int, PlayerData> PlayerDataDictionary;
+        
 
         public void Init(string ip, int prot, int maxAccpet)
         {
 
-            IDFindClient = new ConcurrentDictionary<int, Client<Message>>();
+            PlayerDataDictionary = new ConcurrentDictionary<int, PlayerData>();
 
             NetWorking<Message> net = new NetWorking<Message>();
             net.NetAsServer("127.0.0.1", 8888, 100);
-
         }
 
 
         public void AddClient(Client<Message> client)
         {
-            IDFindClient.TryAdd(client.ID, client);
+            PlayerDataDictionary.TryAdd(client.ID, new PlayerData { client=client,IsJoinLobby=false,IsJoinRoom=false,ID=client.ID});
         }
 
         public void RemoveClient(int ID)
         {
-            IDFindClient.TryRemove(ID, out Client<Message> client);
+            GetPlayerData(ID).client.socket.Close();
+            PlayerDataDictionary.TryRemove(ID, out PlayerData data);
         }
 
-        public void JoinSelfMsg(Client<Message> client)
+
+        public PlayerData GetPlayerData(int ID)
         {
-            Data data = new Data
+            if(PlayerDataDictionary.TryGetValue(ID, out PlayerData data))
             {
-                MsgType = MsgType.JoinMsg,
-                JoinData = new JoinData
-                {
-                    ID = client.ID,
-                }
-            };
-            foreach (var msg in IDFindClient.Values)
-            {
-                if (msg.ID != client.ID)
-                {
-                    msg.SetSendMessageBuffer(GameTool.Serialization(data));
-                    msg.SendMessage();
-                }
+                return data;
             }
+            return null;
         }
-
-        public void JoinOtherMsg(Client<Message> client)
-        {
-            Data data = new Data
-            {
-                MsgType = MsgType.JoinMsg,
-                JoinData = new JoinData
-                {
-                    ID = client.ID,
-                }
-            };
-
-            foreach (var msg in IDFindClient.Values)
-            {
-                if (msg.ID != client.ID)
-                {
-                    data.ID = msg.ID;
-                    client.SetSendMessageBuffer(GameTool.Serialization(data));
-                    client.SendMessage();
-                }
-            }
-
-        }
+       
 
         public void UpData()
         {
-            DebugLog.Log("客户端管理器");
+           
         }
     }
 }

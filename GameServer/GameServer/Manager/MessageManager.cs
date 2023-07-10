@@ -1,60 +1,74 @@
 ﻿using GameData;
+using GameServer.GameTool;
+
 using NetWorkingServer;
-using System;
+
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace GameServer.Manager
 {
 
     public class MessageManager: SingletonClass<MessageManager>
     {
-        private ConcurrentQueue<Data> DataQueue;
-        public MessageManager() { 
-            DataQueue = new ConcurrentQueue<Data>();
+        private ConcurrentQueue<Msg> MessageQueue;
+        public MessageManager() {
+            MessageQueue = new ConcurrentQueue<Msg>();
         }
 
         public void UpData()
         {
-            try
+            while (MessageQueue.Count>0)
             {
-                if(DataQueue.TryDequeue(out Data data))
+                if (MessageQueue.TryDequeue(out Msg msg))
                 {
-                    _ = ThreadPool.QueueUserWorkItem(MessageHandle,data);
+                    MessageHandle(ref msg);
                 }
-            }catch(Exception ex)
-            {
-                DebugLog.LogError(ex.Message);
             }
         }
 
-        private void MessageHandle(object? state)
+
+        public void AddMessage(ref Msg msg)
         {
-            if (state == null) return;
-            Data data= (Data)state;
-            switch (data.MsgType)
+            DebugLog.LogWarn(msg.playerData.RoomID.ToString());
+            //msg.playerData.RoomID += 1;
+            MessageQueue.Enqueue(msg);
+        }
+
+
+        private void MessageHandle(ref Msg msg)
+        {
+            //DebugLog.Log(msg.playerData.RoomID.ToString());
+            msg.playerData.RoomID += 1;
+            
+            //if (state == null) return;
+            //Msg msg= (Msg)state;
+            switch (msg.data.MsgType)
             {
                 case MsgType.AllocationIdmsg:
-                    break;
-                case MsgType.JoinMsg:
                     break;
                 case MsgType.StringMsg:
                     break;
                 case MsgType.AnimMsg:
                     break;
                 case MsgType.TransformMsg:
+                    //RoomManager.Instance.AddMessage(msg);
                     break;
+                case MsgType.JoinRoomMsg:
+                    
+                    break;
+                case MsgType.JoinRandomRoomMsg:
+                    //RoomManager.Instance.AddMessage(ref msg);
+                    break;
+                case MsgType.CreateRoomMsg:
+                    break;
+                
+                
                 
             }
         }
 
-        public void Enqueue(Data data)
-        {
-            DataQueue.Enqueue(data);
-        }
+        
 
     }
 }

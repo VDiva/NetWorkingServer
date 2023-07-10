@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using Newtonsoft.Json;
 using System.Text.Json;
 using System.Text;
+using System;
 
 namespace NetWorkingServer
 {
@@ -10,18 +11,13 @@ namespace NetWorkingServer
     {
         public Socket socket;
         public int ID;
-        public bool IsJoinLobby;
-        public bool IsJoinRoom;
-        public int RoomID;
-
         private SocketAsyncEventArgs saeaReceive;
         private SocketAsyncEventArgs saeaSend;
         T IMsg;
 
         public Client(Socket s,int id)
         {
-            IsJoinLobby = false;
-            IsJoinRoom = false;
+            
             IMsg = new T();
             socket=s;
             ID = id;
@@ -49,18 +45,15 @@ namespace NetWorkingServer
             {
                 byte[] bytes = new byte[saeaReceive.BytesTransferred];
                 Buffer.BlockCopy(saeaReceive.Buffer, 0, bytes, 0, saeaReceive.BytesTransferred);
-                
 
-                IMsg.OnMessage(bytes, this);
+                IMsg.OnMessage(bytes, ID);
 
                 StartReceive();
 
             }
             else if (saeaReceive.BytesTransferred == 0)
             {
-                IMsg.OnDisConnectToServer(this);
-
-
+                IMsg.OnDisConnectToServer(ID);
             }
            
         }
@@ -74,15 +67,27 @@ namespace NetWorkingServer
 
         }
 
-        public void SetSendMessageBuffer(byte[] buffer)
+        
+        /// <summary>
+        /// 异步执行
+        /// </summary>
+        /// <param name="buffer"></param>
+        public void SendMessageAsyn(byte[] buffer)
         {
-            saeaSend.SetBuffer(buffer,0,buffer.Length);
-        }
-
-        public void SendMessage()
-        {
+            saeaSend.SetBuffer(buffer, 0, buffer.Length);
             socket.SendAsync(saeaSend);
         }
-        
+
+
+        /// <summary>
+        /// 同步执行
+        /// </summary>
+        /// <param name="buffer"></param>
+        public void SendMessage(byte[] buffer)
+        {
+            
+            socket.Send(buffer);
+        }
+
     }
 }
