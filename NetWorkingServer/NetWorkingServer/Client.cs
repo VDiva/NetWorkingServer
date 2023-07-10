@@ -10,6 +10,9 @@ namespace NetWorkingServer
     {
         public Socket socket;
         public int ID;
+        public bool IsJoinLobby;
+        public bool IsJoinRoom;
+        public int RoomID;
 
         private SocketAsyncEventArgs saeaReceive;
         private SocketAsyncEventArgs saeaSend;
@@ -17,6 +20,8 @@ namespace NetWorkingServer
 
         public Client(Socket s,int id)
         {
+            IsJoinLobby = false;
+            IsJoinRoom = false;
             IMsg = new T();
             socket=s;
             ID = id;

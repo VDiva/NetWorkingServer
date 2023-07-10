@@ -1,17 +1,18 @@
 ﻿using GameData;
+
 using NetWorkingServer;
 using System.Collections.Concurrent;
 
-namespace GameServer
+namespace GameServer.Manager
 {
     public class ClientManager : SingletonClass<ClientManager>
     {
 
-        public ClientManager() {}
+        public ClientManager() { }
 
         ConcurrentDictionary<int, Client<Message>> IDFindClient;
 
-       
+
         public void Init(string ip, int prot, int maxAccpet)
         {
 
@@ -23,29 +24,29 @@ namespace GameServer
         }
 
 
-        public  void AddClient(Client<Message> client)
+        public void AddClient(Client<Message> client)
         {
             IDFindClient.TryAdd(client.ID, client);
         }
 
-        public  void RemoveClient(int ID)
+        public void RemoveClient(int ID)
         {
-            IDFindClient.TryRemove(ID,out Client<Message> client);
+            IDFindClient.TryRemove(ID, out Client<Message> client);
         }
 
         public void JoinSelfMsg(Client<Message> client)
         {
             Data data = new Data
             {
-                MsgType=MsgType.JoinMsg,
-                JoinData=new JoinData
+                MsgType = MsgType.JoinMsg,
+                JoinData = new JoinData
                 {
                     ID = client.ID,
                 }
             };
             foreach (var msg in IDFindClient.Values)
             {
-               if(msg.ID != client.ID)
+                if (msg.ID != client.ID)
                 {
                     msg.SetSendMessageBuffer(GameTool.Serialization(data));
                     msg.SendMessage();
@@ -64,7 +65,7 @@ namespace GameServer
                 }
             };
 
-            foreach(var msg in IDFindClient.Values)
+            foreach (var msg in IDFindClient.Values)
             {
                 if (msg.ID != client.ID)
                 {
@@ -76,6 +77,9 @@ namespace GameServer
 
         }
 
-        
+        public void UpData()
+        {
+            DebugLog.Log("客户端管理器");
+        }
     }
 }

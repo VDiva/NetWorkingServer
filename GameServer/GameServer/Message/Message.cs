@@ -1,7 +1,8 @@
 ﻿using NetWorkingServer;
 using GameData;
-using Newtonsoft.Json;
-using System.Text;
+
+using GameServer.Manager;
+
 
 namespace GameServer
 {
@@ -15,8 +16,6 @@ namespace GameServer
             client1.SetSendMessageBuffer(GameTool.Serialization(new Data { MsgType = MsgType.AllocationIdmsg, ID = client1.ID }));
             client1.SendMessage();
 
-            ClientManager.Instance.JoinSelfMsg(client1);
-            ClientManager.Instance.JoinOtherMsg(client1);
         }
 
        
@@ -40,7 +39,7 @@ namespace GameServer
                 Data value = GameTool.DeSerialization<Data>(data);
                 if (value != null)
                 {
-                    MessageHandle.Handle(value);
+                    MessageManager.Instance.Enqueue(value);
                 }
             }
             catch (Exception ex)
