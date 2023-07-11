@@ -14,6 +14,6 @@ namespace GameServer.GameTool
         public bool IsJoinLobby;
         public int ID;
         public int RoomID;
-        public Client<Message> client;
+        public Client client;
     }
 }

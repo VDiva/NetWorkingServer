@@ -7,29 +7,36 @@ using System;
 
 namespace NetWorkingServer
 {
-    public class Client<T> where T : IMessage, new()
+    public class Client
     {
         public Socket socket;
         public int ID;
+
+        public int RoomID;
+
+
         private SocketAsyncEventArgs saeaReceive;
         private SocketAsyncEventArgs saeaSend;
-        T IMsg;
+
+        public Action<byte[],Client> ReceiveMsgAction;
+        public Action<Client> ReceiveDisConnectAction;
+
 
         public Client(Socket s,int id)
         {
-            
-            IMsg = new T();
+           
             socket=s;
             ID = id;
             saeaReceive = new SocketAsyncEventArgs();
             saeaSend= new SocketAsyncEventArgs();
             saeaReceive.SetBuffer(new byte[4096],0,4096);
+            saeaReceive.AcceptSocket = socket;
             saeaReceive.Completed += Receive_Comlpleted;
             StartReceive();
         }
 
 
-         void StartReceive()
+        void StartReceive()
         {
             bool suspend = socket.ReceiveAsync(saeaReceive);
             if (!suspend)
@@ -41,33 +48,34 @@ namespace NetWorkingServer
 
         void ReceiveProcessConnect()
         {
+
             if (saeaReceive.SocketError == SocketError.Success && saeaReceive.BytesTransferred > 0)
             {
                 byte[] bytes = new byte[saeaReceive.BytesTransferred];
                 Buffer.BlockCopy(saeaReceive.Buffer, 0, bytes, 0, saeaReceive.BytesTransferred);
-
-                IMsg.OnMessage(bytes, ID);
+                DebugLog.LogWarn("接收到消息");
+                ReceiveMsgAction?.Invoke(bytes, this);
 
                 StartReceive();
 
             }
             else if (saeaReceive.BytesTransferred == 0)
             {
-                IMsg.OnDisConnectToServer(ID);
+                ReceiveDisConnectAction?.Invoke(this);
             }
-           
+
         }
 
 
         void Receive_Comlpleted(object sender, SocketAsyncEventArgs e)
         {
 
-            
+
             ReceiveProcessConnect();
 
         }
 
-        
+
         /// <summary>
         /// 异步执行
         /// </summary>

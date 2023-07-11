@@ -8,12 +8,12 @@ namespace GameServer.Manager
     public class LobbyManager: SingletonClass<LobbyManager>
     {   
 
-        private List<Client<Message>> clients;
+        private List<Client> clients;
         private ConcurrentQueue<Msg> MessageQueue;
 
         public LobbyManager()
         {
-            clients = new List<Client<Message>>();
+            clients = new List<Client>();
             MessageQueue=new ConcurrentQueue<Msg>();
         }
 
@@ -24,13 +24,13 @@ namespace GameServer.Manager
             MessageQueue.Enqueue(msg);
         }
 
-        public void JoinLobby(Client<Message> client)
+        public void JoinLobby(Client client)
         {
             
             clients.Add(client);
         }
 
-        public void BackLobby(Client<Message> client)
+        public void BackLobby(Client client)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace GameServer.Manager
             return clients.Count;
         }
 
-        public bool GetIsJoinLobby(Client<Message> client)
+        public bool GetIsJoinLobby(Client client)
         {
             return clients.Contains(client);
         }

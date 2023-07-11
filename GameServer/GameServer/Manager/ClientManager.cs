@@ -23,7 +23,7 @@ namespace GameServer.Manager
         }
 
 
-        public void AddClient(Client<Message> client)
+        public void AddClient(Client client)
         {
             PlayerDataDictionary.TryAdd(client.ID, new PlayerData { client=client,IsJoinLobby=false,IsJoinRoom=false,ID=client.ID});
         }

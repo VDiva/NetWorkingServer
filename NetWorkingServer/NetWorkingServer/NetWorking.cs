@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Collections.Concurrent;
+using System.Net;
 using System.Net.Sockets;
 
 using Newtonsoft.Json;
@@ -11,6 +12,8 @@ namespace NetWorkingServer
         SocketAsyncEventArgs saeaReceive;
         SocketAsyncEventArgs saeaSend;
         SocketAsyncEventArgs saeaConnect;
+
+        ConcurrentDictionary<int, Client> clients;
         T IMsg;
         int Index = 0;
         
@@ -20,7 +23,18 @@ namespace NetWorkingServer
             saeaAccpet = new SocketAsyncEventArgs();
             saeaReceive = new SocketAsyncEventArgs();
             saeaSend = new SocketAsyncEventArgs();
+            clients = new ConcurrentDictionary<int, Client>();
         }
+
+        private Client GetClient(int ID)
+        {
+            if(clients.TryGetValue(ID,out Client client))
+            {
+                return client;
+            }
+            return null;
+        }
+
         public void NetAsServer(string IP,int Port,int Num)
         {
             
@@ -35,14 +49,16 @@ namespace NetWorkingServer
         }
 
 
-        public Client<T> NetAsClient(string IP,int Port)
+        public Client NetAsClient(string IP,int Port)
         {
             
             saeaConnect = new SocketAsyncEventArgs();
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socket.Connect(new IPEndPoint(IPAddress.Parse(IP),Port));
-            Client<T> client = new Client<T>(socket, Index);     
-            IMsg.OnConnectToServer(client.ID);
+            Client client = new Client(socket, Index);
+            client.ReceiveDisConnectAction += DisConnect;
+            client.ReceiveMsgAction+=ReceiveMsg;
+            IMsg.OnConnectToServer(ref client);
             return client;
         }
 
@@ -60,9 +76,10 @@ namespace NetWorkingServer
 
         void AccpetProcessConnect()
         {
-            Client<T> client = new Client<T>(saeaAccpet.AcceptSocket, Index);
-            
-            IMsg.OnClientAccpet(client);
+            Client client = new Client(saeaAccpet.AcceptSocket, Index);
+            client.ReceiveDisConnectAction += DisConnect;
+            client.ReceiveMsgAction += ReceiveMsg;
+            IMsg.OnClientAccpet(ref client);
             saeaAccpet.AcceptSocket = null;
             StartAccpet();
             Index += 1;
@@ -74,6 +91,23 @@ namespace NetWorkingServer
         {
             AccpetProcessConnect();
         }
+
+
+
+      
+
+        void ReceiveMsg(byte[] bytes,Client client)
+        {
+            IMsg.OnMessage(bytes,ref client);
+        }
+
+        void DisConnect(Client client)
+        {
+            IMsg.OnDisConnectToServer(ref client);
+        }
+
+
+        
 
     }
 }

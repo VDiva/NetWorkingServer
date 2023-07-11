@@ -8,9 +8,9 @@ namespace NetWorkingServer
 {
     public interface IMessage
     {
-        void OnClientAccpet(object client);
-        void OnMessage( byte[] data, int ID);
-        void OnConnectToServer(int ID);
-        void OnDisConnectToServer(int ID);
+        void OnClientAccpet(ref Client client);
+        void OnMessage( byte[] data, ref Client client);
+        void OnConnectToServer(ref Client client);
+        void OnDisConnectToServer(ref Client client);
     }
 }

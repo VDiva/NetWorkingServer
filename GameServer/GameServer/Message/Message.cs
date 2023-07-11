@@ -8,32 +8,33 @@ namespace GameServer
 {
     public class Message : IMessage
     {
-        public void OnClientAccpet(object client)
+        public void OnClientAccpet(ref Client client)
         {
-            var client1=client as Client<Message>; ;
-            DebugLog.LogWarn(client1.socket.RemoteEndPoint + "链接到服务器");
-            ClientManager.Instance.AddClient(client1);
-            client1.SendMessageAsyn(MsgTool.Serialization(new Data { MsgType = MsgType.AllocationIdmsg, ID = client1.ID }));
+            
+            DebugLog.LogWarn(client.socket.RemoteEndPoint + "链接到服务器");
+            ClientManager.Instance.AddClient(client);
+            client.SendMessageAsyn(MsgTool.Serialization(new Data { MsgType = MsgType.AllocationIdmsg, ID = client.ID }));
         }
 
-        public void OnDisConnectToServer(object client)
+        public void OnDisConnectToServer(ref Client client)
         {
             
         }
 
        
 
-        public void OnMessage(byte[] data, int ID)
+        public void OnMessage(byte[] data, ref Client client)
         {
-           
+            DebugLog.LogError(client.RoomID.ToString());
             try
             {
                 Data value = MsgTool.DeSerialization<Data>(data);
                 if (value != null)
                 {
-                    PlayerData playerData = ClientManager.Instance.GetPlayerData(ID);
-                    Msg msg = new Msg(value, ref playerData);
-                    MessageManager.Instance.AddMessage(ref msg);
+                    client.RoomID += 1;
+                    //PlayerData playerData = ClientManager.Instance.GetPlayerData(ID);
+                    //Msg msg = new Msg(value, ref playerData);
+                    //MessageManager.Instance.AddMessage(ref msg);
                 }
             }
             catch (Exception ex)
@@ -42,15 +43,11 @@ namespace GameServer
             }
         }
 
-        public void OnConnectToServer(int ID)
+        public void OnConnectToServer(ref Client client)
         {
            
         }
 
-        public void OnDisConnectToServer(int ID)
-        {
-            ClientManager.Instance.RemoveClient(ID);
 
-        }
     }
 }
