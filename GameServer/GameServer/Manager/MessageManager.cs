@@ -30,19 +30,14 @@ namespace GameServer.Manager
 
         public void AddMessage(ref Msg msg)
         {
-            DebugLog.LogWarn(msg.playerData.RoomID.ToString());
-            //msg.playerData.RoomID += 1;
+            
             MessageQueue.Enqueue(msg);
         }
 
 
         private void MessageHandle(ref Msg msg)
         {
-            //DebugLog.Log(msg.playerData.RoomID.ToString());
-            msg.playerData.RoomID += 1;
             
-            //if (state == null) return;
-            //Msg msg= (Msg)state;
             switch (msg.data.MsgType)
             {
                 case MsgType.AllocationIdmsg:
@@ -50,17 +45,21 @@ namespace GameServer.Manager
                 case MsgType.StringMsg:
                     break;
                 case MsgType.AnimMsg:
+                    if (msg.playerData.IsJoinRoom) RoomManager.Instance.AddMessage(ref msg);
+                    if (msg.playerData.IsJoinLobby) LobbyManager.Instance.AddMessage(ref msg);
                     break;
                 case MsgType.TransformMsg:
-                    //RoomManager.Instance.AddMessage(msg);
+                    if(msg.playerData.IsJoinRoom) RoomManager.Instance.AddMessage(ref msg);
+                    if (msg.playerData.IsJoinLobby) LobbyManager.Instance.AddMessage(ref msg);
                     break;
                 case MsgType.JoinRoomMsg:
-                    
+                    RoomManager.Instance.AddMessage(ref msg);
                     break;
                 case MsgType.JoinRandomRoomMsg:
-                    //RoomManager.Instance.AddMessage(ref msg);
+                    RoomManager.Instance.AddMessage(ref msg);
                     break;
                 case MsgType.CreateRoomMsg:
+                    RoomManager.Instance.AddMessage(ref msg);
                     break;
                 
                 

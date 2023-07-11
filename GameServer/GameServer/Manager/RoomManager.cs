@@ -34,7 +34,7 @@ namespace GameServer.Manager
 
         public void AddMessage(ref Msg msg)
         {
-            
+            DebugLog.LogWarn(msg.playerData.RoomID.ToString());
             MessageQueue.Enqueue(msg);
         }
 
@@ -101,7 +101,7 @@ namespace GameServer.Manager
             {
                 if (MessageQueue.TryDequeue(out Msg msg))
                 {
-                    _ = ThreadPool.QueueUserWorkItem(MessageHandle, msg);
+                    MessageHandle(ref msg);
                 }
             }
             catch (Exception ex)
@@ -110,10 +110,9 @@ namespace GameServer.Manager
             }
         }
 
-        private void MessageHandle(object? state)
+        private void MessageHandle(ref Msg msg)
         {
-            if (state == null) return;
-            Msg msg = (Msg)state;
+           
             switch (msg.data.MsgType)
             {
                 case MsgType.StringMsg:

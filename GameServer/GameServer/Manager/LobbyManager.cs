@@ -1,17 +1,27 @@
 ﻿using GameData;
 using GameServer.GameTool;
 using NetWorkingServer;
-
+using System.Collections.Concurrent;
 
 namespace GameServer.Manager
 {
     public class LobbyManager: SingletonClass<LobbyManager>
-    {
+    {   
+
         private List<Client<Message>> clients;
+        private ConcurrentQueue<Msg> MessageQueue;
 
         public LobbyManager()
         {
             clients = new List<Client<Message>>();
+            MessageQueue=new ConcurrentQueue<Msg>();
+        }
+
+        public void AddMessage(ref Msg msg)
+        {
+            //DebugLog.LogWarn(msg.playerData.RoomID.ToString());
+            //msg.playerData.RoomID += 1;
+            MessageQueue.Enqueue(msg);
         }
 
         public void JoinLobby(Client<Message> client)
@@ -43,14 +53,42 @@ namespace GameServer.Manager
             return clients.Contains(client);
         }
 
-        public void OnLobbyMessage(Data data)
-        {
-
-        }
 
         public void UpData()
         {
+            while (MessageQueue.Count>0)
+            {
+                if(MessageQueue.TryDequeue(out Msg msg))
+                {
+                    MessageHandle(ref msg);
+                }
+            }
+        }
 
+
+        private void MessageHandle(ref Msg msg)
+        {
+            
+            switch (msg.data.MsgType)
+            {
+                case MsgType.AllocationIdmsg:
+                    break;
+                case MsgType.StringMsg:
+                    break;
+                case MsgType.AnimMsg:
+                    break;
+                case MsgType.TransformMsg:
+                    break;
+                case MsgType.JoinRoomMsg:
+                    RoomManager.Instance.AddMessage(ref msg);
+                    break;
+                case MsgType.JoinRandomRoomMsg:
+                    RoomManager.Instance.AddMessage(ref msg);
+                    break;
+                case MsgType.CreateRoomMsg:
+                    RoomManager.Instance.AddMessage(ref msg);
+                    break;
+            }
         }
     }
 }

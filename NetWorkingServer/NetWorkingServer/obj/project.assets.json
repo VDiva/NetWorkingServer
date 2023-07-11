@@ -92,19 +92,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\smr\\.nuget\\packages\\": {}
+    "C:\\Users\\s\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Github\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer.csproj",
+      "projectUniqueName": "D:\\ME\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer.csproj",
       "projectName": "NetWorkingServer",
-      "projectPath": "D:\\Github\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer.csproj",
-      "packagesPath": "C:\\Users\\smr\\.nuget\\packages\\",
-      "outputPath": "D:\\Github\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer\\obj\\",
+      "projectPath": "D:\\ME\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer.csproj",
+      "packagesPath": "C:\\Users\\s\\.nuget\\packages\\",
+      "outputPath": "D:\\ME\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\smr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\s\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -155,7 +155,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   }
