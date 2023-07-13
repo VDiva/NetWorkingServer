@@ -30,8 +30,7 @@ namespace GameServer.Manager
 
         public void RemoveClient(ref Client client)
         {   
-
-            client.socket.Close();
+            if(client.IsJoinRoom) RoomManager.Instance.RemoveClient(ref client);
             PlayerDataDictionary.TryRemove(client.ID, out Client c);
 
         }

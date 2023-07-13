@@ -149,6 +149,14 @@ namespace GameServer.RoomData
         }
 
 
+        public void RemoveClient(ref Client client)
+        {
+            clients.Remove(client);
+            client.socket.Close();
+            client.socket.Dispose();
+        }
+
+
 
     }
 }

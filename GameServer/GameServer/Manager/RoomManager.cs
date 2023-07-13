@@ -102,7 +102,7 @@ namespace GameServer.Manager
                         Room r = new Room(RoomID);
                         r.JoinRoom(ref msg);
                         r.Init(DefMaxPeople);
-                        rooms.TryAdd(0, r);
+                        rooms.TryAdd(RoomID, r);
                         isJoin = true;
                         RoomID += 1;
                     }
@@ -122,7 +122,7 @@ namespace GameServer.Manager
                     Room r = new Room(RoomID);
                     r.JoinRoom(ref msg);
                     r.Init(DefMaxPeople);
-                    rooms.TryAdd(0, r);
+                    rooms.TryAdd(RoomID, r);
                     isJoin = true;
                     RoomID += 1;
                 }
@@ -216,7 +216,12 @@ namespace GameServer.Manager
 
         public void RemoveClient(ref Client client)
         {
+            if(rooms.TryGetValue(client.RoomID,out Room room))
+            {
 
+                room.RemoveClient(ref client);
+                
+            }
         }
     }
 }
