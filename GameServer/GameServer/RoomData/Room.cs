@@ -13,6 +13,7 @@ namespace GameServer.RoomData
 {
     public class Room
     {
+        public string RoomName;
         public int MaxPeople;
         List<Client> clients;
         private ConcurrentQueue<Msg> MessageQueue;
@@ -25,7 +26,7 @@ namespace GameServer.RoomData
 
         public void AddMessage(ref Msg msg)
         {
-            DebugLog.LogWarn(msg.client.RoomID.ToString());
+            
             MessageQueue.Enqueue(msg);
         }
 
@@ -40,24 +41,59 @@ namespace GameServer.RoomData
             msg.client.IsJoinRoom = true;
             msg.client.RoomID = RoomId;
             clients.Add(msg.client);
-            DebugLog.LogWarn("房间成功");
+
+            Data data = new Data { MsgType=MsgType.JoinRoomCallBack };
+            foreach(Client client in clients)
+            {
+                if (client.ID != msg.client.ID)
+                {
+                    data.PlayerData = new GameData.PlayerData { 
+                        ID = client.ID,
+                    };
+                    msg.client.SendMessage(MsgTool.Serialization(data));
+
+                    data.PlayerData = new GameData.PlayerData
+                    {
+                        ID = msg.client.ID,
+                    };
+
+                   client.SendMessage(MsgTool.Serialization(data));
+                }
+            }
+
+
+            DebugLog.LogWarn("加入房间成功");
             return true;
         }
 
+
+
         public void BlackRoom(ref Msg msg)
         {
+            Data data = new Data();
             try
             {
 
                 clients.Remove(msg.client);
                 msg.client.IsJoinRoom= false;
+                data.MsgType = MsgType.BlackRoomSucceed;
             }catch (Exception ex)
             {
                 DebugLog.LogError(ex.Message);
+                data.MsgType = MsgType.BlackRoomError;
             }
+            msg.client.SendMessage(MsgTool.Serialization(data));
+
+
+
         }
 
-        public void CliearRoom()
+        public bool IsFullof()
+        {
+            return clients.Count > MaxPeople;
+        }
+
+        public void ClearRoom()
         {
             clients.Clear();
         }
@@ -92,12 +128,24 @@ namespace GameServer.RoomData
 
         private void UpdataAnim(ref Msg msg)
         {
-
+            foreach (var item in clients)
+            {
+                if (item.ID != msg.client.ID)
+                {
+                    item.SendMessage(MsgTool.Serialization(msg.data));
+                }   
+            }
         }
 
         private void UpdataTransform(ref Msg msg)
         {
-
+            foreach (var item in clients)
+            {
+                if (item.ID != msg.client.ID)
+                {
+                    item.SendMessage(MsgTool.Serialization(msg.data));
+                }
+            }
         }
 
 

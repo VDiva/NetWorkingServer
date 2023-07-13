@@ -12,26 +12,26 @@ namespace GameServer
         {
             
             DebugLog.LogWarn(client.socket.RemoteEndPoint + "链接到服务器");
-            ClientManager.Instance.AddClient(client);
+            ClientManager.Instance.AddClient(ref client);
             client.SendMessageAsyn(MsgTool.Serialization(new Data { MsgType = MsgType.AllocationIdmsg, ID = client.ID }));
         }
 
         public void OnDisConnectToServer(ref Client client)
         {
-            
+            ClientManager.Instance.RemoveClient(ref client);
         }
 
        
 
         public void OnMessage(byte[] data, ref Client client)
         {
-            DebugLog.LogError(client.RoomID.ToString());
+            DebugLog.LogWarn(client.RoomID.ToString());
             try
             {
                 Data value = MsgTool.DeSerialization<Data>(data);
                 if (value != null)
                 {
-                    client.RoomID += 1;
+                    
                     //PlayerData playerData = ClientManager.Instance.GetPlayerData(ID);
                     Msg msg = new Msg(ref value, ref client);
                     MessageManager.Instance.AddMessage(ref msg);
