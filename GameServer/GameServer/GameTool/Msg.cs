@@ -12,10 +12,10 @@ namespace GameServer.GameTool
     {
         
         public Data data;
-        public PlayerData playerData;
-        public Msg(Data data,ref PlayerData playerData)
+        public Client client;
+        public Msg(ref Data data,ref Client client)
         {
-            this.playerData = playerData;
+            this.client = client;
             this.data = data;
         }
     }

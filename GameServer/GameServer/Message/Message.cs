@@ -33,8 +33,8 @@ namespace GameServer
                 {
                     client.RoomID += 1;
                     //PlayerData playerData = ClientManager.Instance.GetPlayerData(ID);
-                    //Msg msg = new Msg(value, ref playerData);
-                    //MessageManager.Instance.AddMessage(ref msg);
+                    Msg msg = new Msg(ref value, ref client);
+                    MessageManager.Instance.AddMessage(ref msg);
                 }
             }
             catch (Exception ex)

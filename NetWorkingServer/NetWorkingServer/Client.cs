@@ -11,7 +11,8 @@ namespace NetWorkingServer
     {
         public Socket socket;
         public int ID;
-
+        public bool IsJoinRoom;
+        public bool IsJoinLobby;
         public int RoomID;
 
 
@@ -24,7 +25,8 @@ namespace NetWorkingServer
 
         public Client(Socket s,int id)
         {
-           
+            IsJoinLobby = false;
+            IsJoinRoom = false;
             socket=s;
             ID = id;
             saeaReceive = new SocketAsyncEventArgs();

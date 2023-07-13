@@ -45,12 +45,12 @@ namespace GameServer.Manager
                 case MsgType.StringMsg:
                     break;
                 case MsgType.AnimMsg:
-                    if (msg.playerData.IsJoinRoom) RoomManager.Instance.AddMessage(ref msg);
-                    if (msg.playerData.IsJoinLobby) LobbyManager.Instance.AddMessage(ref msg);
+                    if (msg.client.IsJoinRoom) RoomManager.Instance.AddMessage(ref msg);
+                    if (msg.client.IsJoinLobby) LobbyManager.Instance.AddMessage(ref msg);
                     break;
                 case MsgType.TransformMsg:
-                    if(msg.playerData.IsJoinRoom) RoomManager.Instance.AddMessage(ref msg);
-                    if (msg.playerData.IsJoinLobby) LobbyManager.Instance.AddMessage(ref msg);
+                    if (msg.client.IsJoinRoom) RoomManager.Instance.AddMessage(ref msg);
+                    if (msg.client.IsJoinLobby) LobbyManager.Instance.AddMessage(ref msg);
                     break;
                 case MsgType.JoinRoomMsg:
                     RoomManager.Instance.AddMessage(ref msg);

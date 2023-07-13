@@ -34,7 +34,7 @@ namespace GameServer.Manager
 
         public void AddMessage(ref Msg msg)
         {
-            DebugLog.LogWarn(msg.playerData.RoomID.ToString());
+            DebugLog.LogWarn(msg.client.RoomID.ToString());
             MessageQueue.Enqueue(msg);
         }
 
@@ -108,28 +108,36 @@ namespace GameServer.Manager
             {
                 DebugLog.LogError(ex.Message);
             }
+            UpDataRoom();
         }
 
         private void MessageHandle(ref Msg msg)
         {
-           
+            bool isHas = rooms.TryGetValue(msg.client.RoomID, out Room room);
             switch (msg.data.MsgType)
             {
-                case MsgType.StringMsg:
-                    break;
+                
                 case MsgType.AnimMsg:
+                    if (isHas)
+                    {
+                        room?.AddMessage(ref msg);
+                    }
                     break;
                 case MsgType.TransformMsg:
-                 
+                    if (isHas)
+                    {
+                        room?.AddMessage(ref msg);
+                    }
                     break;
-                case MsgType.JoinRoomMsg:
-                    
-                    break;
-                case MsgType.JoinRandomRoomMsg:
-                    JoinRandomRoom(ref msg);
-                    break;
-                case MsgType.CreateRoomMsg:
-                    break;
+                
+            }
+        }
+
+        private void UpDataRoom()
+        {
+            foreach (Room room in rooms.Values)
+            {
+                room.UpData();
             }
         }
     }
