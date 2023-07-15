@@ -69,26 +69,7 @@ namespace GameServer.Manager
         private void MessageHandle(ref Msg msg)
         {
             
-            switch (msg.data.MsgType)
-            {
-                case MsgType.AllocationIdmsg:
-                    break;
-                case MsgType.StringMsg:
-                    break;
-                case MsgType.AnimMsg:
-                    break;
-                case MsgType.TransformMsg:
-                    break;
-                case MsgType.JoinRoomMsg:
-                    RoomManager.Instance.AddMessage(ref msg);
-                    break;
-                case MsgType.JoinRandomRoomMsg:
-                    RoomManager.Instance.AddMessage(ref msg);
-                    break;
-                case MsgType.CreateRoomMsg:
-                    RoomManager.Instance.AddMessage(ref msg);
-                    break;
-            }
+            
         }
     }
 }

@@ -30,7 +30,7 @@ namespace GameServer.Manager
 
         public void RemoveClient(ref Client client)
         {   
-            if(client.IsJoinRoom) RoomManager.Instance.RemoveClient(ref client);
+            if(client.IsJoinRoom) RoomManager.Instance.BlackRoom(ref client);
             PlayerDataDictionary.TryRemove(client.ID, out Client c);
 
         }

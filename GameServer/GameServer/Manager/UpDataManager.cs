@@ -10,18 +10,15 @@ namespace GameServer.Manager
         public void Init()
         {
 
-            new Task(() =>
+            while (true)
             {
-                while (true)
-                {
-                    Thread.Sleep(30);
-                   
-                    MessageManager.Instance.UpData();
-                    ClientManager.Instance.UpData();
-                    LobbyManager.Instance.UpData();
-                    RoomManager.Instance.UpData();
-                }
-            }).Start();
+                Thread.Sleep(30);
+
+                MessageManager.Instance.UpData();
+                ClientManager.Instance.UpData();
+                LobbyManager.Instance.UpData();
+                RoomManager.Instance.UpData();
+            }
         }
     }
 }

@@ -44,21 +44,7 @@ namespace GameServer.Manager
                     break;
                 case MsgType.StringMsg:
                     break;
-                case MsgType.AnimMsg:
-                    if (msg.client.IsJoinRoom) RoomManager.Instance.AddMessage(ref msg);
-                    if (msg.client.IsJoinLobby) LobbyManager.Instance.AddMessage(ref msg);
-                    break;
-                case MsgType.TransformMsg:
-                    if (msg.client.IsJoinRoom) RoomManager.Instance.AddMessage(ref msg);
-                    if (msg.client.IsJoinLobby) LobbyManager.Instance.AddMessage(ref msg);
-                    break;
-                case MsgType.JoinRoomMsg:
-                    RoomManager.Instance.AddMessage(ref msg);
-                    break;
-                case MsgType.JoinRandomRoomMsg:
-                    RoomManager.Instance.AddMessage(ref msg);
-                    break;
-                case MsgType.CreateRoomMsg:
+                case MsgType.RoomMsg: 
                     RoomManager.Instance.AddMessage(ref msg);
                     break;
                 

@@ -24,37 +24,43 @@ namespace GameData {
     static GameDataReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg5HYW1lRGF0YS5wcm90bxIIR2FtZURhdGEi9QEKBERhdGESLgoNR2FtZVRy",
+            "Cg5HYW1lRGF0YS5wcm90bxIIR2FtZURhdGEi+gIKBERhdGESLgoNR2FtZVRy",
             "YW5zZnJvbRgBIAEoCzIXLkdhbWVEYXRhLkdhbWVUcmFuc2Zyb20SMAoOQW5p",
             "bVBhcmFtZXRlcnMYAiABKAsyGC5HYW1lRGF0YS5BbmltUGFyYW1ldGVycxIi",
             "CgdNc2dUeXBlGAMgASgOMhEuR2FtZURhdGEuTXNnVHlwZRILCgNtc2cYBCAB",
             "KAkSCgoCSUQYBSABKAUSKAoKUGxheWVyRGF0YRgGIAEoCzIULkdhbWVEYXRh",
             "LlBsYXllckRhdGESJAoIUm9vbURhdGEYByABKAsyEi5HYW1lRGF0YS5Sb29t",
-            "RGF0YSJ7Cg1HYW1lVHJhbnNmcm9tEiQKCHBvc2l0aW9uGAEgASgLMhIuR2Ft",
-            "ZURhdGEuUG9zaXRpb24SJAoIcmF0YXRpb24YAiABKAsyEi5HYW1lRGF0YS5S",
-            "YXRhdGlvbhIeCgVzY2FsZRgDIAEoCzIPLkdhbWVEYXRhLlNjYWxlIi0KCFBv",
-            "c2l0aW9uEiEKBnZlY3RvchgBIAEoCzIRLkdhbWVEYXRhLlZlY3RvcjMiLQoI",
-            "UmF0YXRpb24SIQoGdmVjdG9yGAEgASgLMhEuR2FtZURhdGEuVmVjdG9yMyIq",
-            "CgVTY2FsZRIhCgZ2ZWN0b3IYASABKAsyES5HYW1lRGF0YS5WZWN0b3IzIjYK",
-            "DkFuaW1QYXJhbWV0ZXJzEiQKCGFuaW1EYXRhGAEgAygLMhIuR2FtZURhdGEu",
-            "QW5pbURhdGEibAoIQW5pbURhdGESFAoMQW5pbURhdGFOYW1lGAEgASgJEhQK",
-            "DEFuaW1EYXRhVHlwZRgCIAEoBRIRCglmbG9hdERhdGEYAyABKAISDwoHaW50",
-            "RGF0YRgEIAEoBRIQCghib29sRGF0YRgFIAEoCCIqCgdWZWN0b3IzEgkKAVgY",
-            "ASABKAISCQoBWRgCIAEoAhIJCgFaGAMgASgCIiwKCFJvb21EYXRhEg4KBlJv",
-            "b21JRBgBIAEoBRIQCghSb29tTmFtZRgCIAEoBSImCgpQbGF5ZXJEYXRhEgoK",
-            "AklEGAEgASgFEgwKBE5hbWUYAiABKAkq8AIKB01zZ1R5cGUSCwoHQW5pbU1z",
-            "ZxAAEhAKDFRyYW5zZm9ybU1zZxABEg0KCVN0cmluZ01zZxACEhMKD0FsbG9j",
-            "YXRpb25JRE1zZxADEg8KC0pvaW5Sb29tTXNnEAUSFQoRSm9pblJhbmRvbVJv",
-            "b21Nc2cQBhIRCg1DcmVhdGVSb29tTXNnEAcSFAoQSm9pblJvb21Nc2dFcnJv",
-            "chAIEhoKFkpvaW5SYW5kb21Sb29tTXNnRXJyb3IQCRIWChJDcmVhdGVSb29t",
-            "TXNnRXJyb3IQChIWChJKb2luUm9vbU1zZ1N1Y2NlZWQQCxIcChhKb2luUmFu",
-            "ZG9tUm9vbU1zZ1N1Y2NlZWQQDBIYChRDcmVhdGVSb29tTXNnU3VjY2VlZBAN",
-            "Eg0KCUJsYWNrUm9vbRAOEhIKDkJsYWNrUm9vbUVycm9yEA8SFAoQQmxhY2tS",
-            "b29tU3VjY2VlZBAQEhQKEEpvaW5Sb29tQ2FsbEJhY2sQEWIGcHJvdG8z"));
+            "RGF0YRIqCgtSb29tTXNnVHlwZRgIIAEoDjIVLkdhbWVEYXRhLlJvb21Nc2dU",
+            "eXBlEiwKDExvYmJ5TXNnVHlwZRgJIAEoDjIWLkdhbWVEYXRhLkxvYmJ5TXNn",
+            "VHlwZRIpCgtQbGF5ZXJEYXRhcxgKIAMoCzIULkdhbWVEYXRhLlBsYXllckRh",
+            "dGEiewoNR2FtZVRyYW5zZnJvbRIkCghwb3NpdGlvbhgBIAEoCzISLkdhbWVE",
+            "YXRhLlBvc2l0aW9uEiQKCHJhdGF0aW9uGAIgASgLMhIuR2FtZURhdGEuUmF0",
+            "YXRpb24SHgoFc2NhbGUYAyABKAsyDy5HYW1lRGF0YS5TY2FsZSItCghQb3Np",
+            "dGlvbhIhCgZ2ZWN0b3IYASABKAsyES5HYW1lRGF0YS5WZWN0b3IzIi0KCFJh",
+            "dGF0aW9uEiEKBnZlY3RvchgBIAEoCzIRLkdhbWVEYXRhLlZlY3RvcjMiKgoF",
+            "U2NhbGUSIQoGdmVjdG9yGAEgASgLMhEuR2FtZURhdGEuVmVjdG9yMyI2Cg5B",
+            "bmltUGFyYW1ldGVycxIkCghhbmltRGF0YRgBIAMoCzISLkdhbWVEYXRhLkFu",
+            "aW1EYXRhImwKCEFuaW1EYXRhEhQKDEFuaW1EYXRhTmFtZRgBIAEoCRIUCgxB",
+            "bmltRGF0YVR5cGUYAiABKAUSEQoJZmxvYXREYXRhGAMgASgCEg8KB2ludERh",
+            "dGEYBCABKAUSEAoIYm9vbERhdGEYBSABKAgiKgoHVmVjdG9yMxIJCgFYGAEg",
+            "ASgCEgkKAVkYAiABKAISCQoBWhgDIAEoAiI/CghSb29tRGF0YRIOCgZSb29t",
+            "SUQYASABKAUSEAoIUm9vbU5hbWUYAiABKAUSEQoJTWF4UGVvcGxlGAMgASgF",
+            "IiYKClBsYXllckRhdGESCgoCSUQYASABKAUSDAoETmFtZRgCIAEoCSo3CgxM",
+            "b2JieU1zZ1R5cGUSEAoMTG9iYnlBbmltTXNnEAASFQoRTG9iYnlUcmFuc2Zv",
+            "cm1Nc2cQASrYAgoLUm9vbU1zZ1R5cGUSDwoLSm9pblJvb21Nc2cQABIVChFK",
+            "b2luUmFuZG9tUm9vbU1zZxABEhEKDUNyZWF0ZVJvb21Nc2cQAhIUChBKb2lu",
+            "Um9vbU1zZ0Vycm9yEAMSGgoWSm9pblJhbmRvbVJvb21Nc2dFcnJvchAEEhYK",
+            "EkNyZWF0ZVJvb21Nc2dFcnJvchAFEhYKEkpvaW5Sb29tTXNnU3VjY2VlZBAG",
+            "EhwKGEpvaW5SYW5kb21Sb29tTXNnU3VjY2VlZBAHEhgKFENyZWF0ZVJvb21N",
+            "c2dTdWNjZWVkEAgSDQoJQmxhY2tSb29tEAkSEgoOQmxhY2tSb29tRXJyb3IQ",
+            "ChIUChBCbGFja1Jvb21TdWNjZWVkEAsSFAoQSm9pblJvb21DYWxsQmFjaxAM",
+            "Eg8KC1Jvb21BbmltTXNnEA0SFAoQUm9vbVRyYW5zZm9ybU1zZxAOKkgKB01z",
+            "Z1R5cGUSDQoJU3RyaW5nTXNnEAASEwoPQWxsb2NhdGlvbklETXNnEAESCwoH",
+            "Um9vbU1zZxACEgwKCExvYmJ5TXNnEANiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::GameData.MsgType), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameData.Data), global::GameData.Data.Parser, new[]{ "GameTransfrom", "AnimParameters", "MsgType", "Msg", "ID", "PlayerData", "RoomData" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::GameData.LobbyMsgType), typeof(global::GameData.RoomMsgType), typeof(global::GameData.MsgType), }, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameData.Data), global::GameData.Data.Parser, new[]{ "GameTransfrom", "AnimParameters", "MsgType", "Msg", "ID", "PlayerData", "RoomData", "RoomMsgType", "LobbyMsgType", "PlayerDatas" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameData.GameTransfrom), global::GameData.GameTransfrom.Parser, new[]{ "Position", "Ratation", "Scale" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameData.Position), global::GameData.Position.Parser, new[]{ "Vector" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameData.Ratation), global::GameData.Ratation.Parser, new[]{ "Vector" }, null, null, null, null),
@@ -62,7 +68,7 @@ namespace GameData {
             new pbr::GeneratedClrTypeInfo(typeof(global::GameData.AnimParameters), global::GameData.AnimParameters.Parser, new[]{ "AnimData" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameData.AnimData), global::GameData.AnimData.Parser, new[]{ "AnimDataName", "AnimDataType", "FloatData", "IntData", "BoolData" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameData.Vector3), global::GameData.Vector3.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::GameData.RoomData), global::GameData.RoomData.Parser, new[]{ "RoomID", "RoomName" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::GameData.RoomData), global::GameData.RoomData.Parser, new[]{ "RoomID", "RoomName", "MaxPeople" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::GameData.PlayerData), global::GameData.PlayerData.Parser, new[]{ "ID", "Name" }, null, null, null, null)
           }));
     }
@@ -70,24 +76,34 @@ namespace GameData {
 
   }
   #region Enums
+  public enum LobbyMsgType {
+    [pbr::OriginalName("LobbyAnimMsg")] LobbyAnimMsg = 0,
+    [pbr::OriginalName("LobbyTransformMsg")] LobbyTransformMsg = 1,
+  }
+
+  public enum RoomMsgType {
+    [pbr::OriginalName("JoinRoomMsg")] JoinRoomMsg = 0,
+    [pbr::OriginalName("JoinRandomRoomMsg")] JoinRandomRoomMsg = 1,
+    [pbr::OriginalName("CreateRoomMsg")] CreateRoomMsg = 2,
+    [pbr::OriginalName("JoinRoomMsgError")] JoinRoomMsgError = 3,
+    [pbr::OriginalName("JoinRandomRoomMsgError")] JoinRandomRoomMsgError = 4,
+    [pbr::OriginalName("CreateRoomMsgError")] CreateRoomMsgError = 5,
+    [pbr::OriginalName("JoinRoomMsgSucceed")] JoinRoomMsgSucceed = 6,
+    [pbr::OriginalName("JoinRandomRoomMsgSucceed")] JoinRandomRoomMsgSucceed = 7,
+    [pbr::OriginalName("CreateRoomMsgSucceed")] CreateRoomMsgSucceed = 8,
+    [pbr::OriginalName("BlackRoom")] BlackRoom = 9,
+    [pbr::OriginalName("BlackRoomError")] BlackRoomError = 10,
+    [pbr::OriginalName("BlackRoomSucceed")] BlackRoomSucceed = 11,
+    [pbr::OriginalName("JoinRoomCallBack")] JoinRoomCallBack = 12,
+    [pbr::OriginalName("RoomAnimMsg")] RoomAnimMsg = 13,
+    [pbr::OriginalName("RoomTransformMsg")] RoomTransformMsg = 14,
+  }
+
   public enum MsgType {
-    [pbr::OriginalName("AnimMsg")] AnimMsg = 0,
-    [pbr::OriginalName("TransformMsg")] TransformMsg = 1,
-    [pbr::OriginalName("StringMsg")] StringMsg = 2,
-    [pbr::OriginalName("AllocationIDMsg")] AllocationIdmsg = 3,
-    [pbr::OriginalName("JoinRoomMsg")] JoinRoomMsg = 5,
-    [pbr::OriginalName("JoinRandomRoomMsg")] JoinRandomRoomMsg = 6,
-    [pbr::OriginalName("CreateRoomMsg")] CreateRoomMsg = 7,
-    [pbr::OriginalName("JoinRoomMsgError")] JoinRoomMsgError = 8,
-    [pbr::OriginalName("JoinRandomRoomMsgError")] JoinRandomRoomMsgError = 9,
-    [pbr::OriginalName("CreateRoomMsgError")] CreateRoomMsgError = 10,
-    [pbr::OriginalName("JoinRoomMsgSucceed")] JoinRoomMsgSucceed = 11,
-    [pbr::OriginalName("JoinRandomRoomMsgSucceed")] JoinRandomRoomMsgSucceed = 12,
-    [pbr::OriginalName("CreateRoomMsgSucceed")] CreateRoomMsgSucceed = 13,
-    [pbr::OriginalName("BlackRoom")] BlackRoom = 14,
-    [pbr::OriginalName("BlackRoomError")] BlackRoomError = 15,
-    [pbr::OriginalName("BlackRoomSucceed")] BlackRoomSucceed = 16,
-    [pbr::OriginalName("JoinRoomCallBack")] JoinRoomCallBack = 17,
+    [pbr::OriginalName("StringMsg")] StringMsg = 0,
+    [pbr::OriginalName("AllocationIDMsg")] AllocationIdmsg = 1,
+    [pbr::OriginalName("RoomMsg")] RoomMsg = 2,
+    [pbr::OriginalName("LobbyMsg")] LobbyMsg = 3,
   }
 
   #endregion
@@ -134,6 +150,9 @@ namespace GameData {
       iD_ = other.iD_;
       playerData_ = other.playerData_ != null ? other.playerData_.Clone() : null;
       roomData_ = other.roomData_ != null ? other.roomData_.Clone() : null;
+      roomMsgType_ = other.roomMsgType_;
+      lobbyMsgType_ = other.lobbyMsgType_;
+      playerDatas_ = other.playerDatas_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -169,7 +188,7 @@ namespace GameData {
 
     /// <summary>Field number for the "MsgType" field.</summary>
     public const int MsgTypeFieldNumber = 3;
-    private global::GameData.MsgType msgType_ = global::GameData.MsgType.AnimMsg;
+    private global::GameData.MsgType msgType_ = global::GameData.MsgType.StringMsg;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public global::GameData.MsgType MsgType {
@@ -227,6 +246,41 @@ namespace GameData {
       }
     }
 
+    /// <summary>Field number for the "RoomMsgType" field.</summary>
+    public const int RoomMsgTypeFieldNumber = 8;
+    private global::GameData.RoomMsgType roomMsgType_ = global::GameData.RoomMsgType.JoinRoomMsg;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::GameData.RoomMsgType RoomMsgType {
+      get { return roomMsgType_; }
+      set {
+        roomMsgType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "LobbyMsgType" field.</summary>
+    public const int LobbyMsgTypeFieldNumber = 9;
+    private global::GameData.LobbyMsgType lobbyMsgType_ = global::GameData.LobbyMsgType.LobbyAnimMsg;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::GameData.LobbyMsgType LobbyMsgType {
+      get { return lobbyMsgType_; }
+      set {
+        lobbyMsgType_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "PlayerDatas" field.</summary>
+    public const int PlayerDatasFieldNumber = 10;
+    private static readonly pb::FieldCodec<global::GameData.PlayerData> _repeated_playerDatas_codec
+        = pb::FieldCodec.ForMessage(82, global::GameData.PlayerData.Parser);
+    private readonly pbc::RepeatedField<global::GameData.PlayerData> playerDatas_ = new pbc::RepeatedField<global::GameData.PlayerData>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::GameData.PlayerData> PlayerDatas {
+      get { return playerDatas_; }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -249,6 +303,9 @@ namespace GameData {
       if (ID != other.ID) return false;
       if (!object.Equals(PlayerData, other.PlayerData)) return false;
       if (!object.Equals(RoomData, other.RoomData)) return false;
+      if (RoomMsgType != other.RoomMsgType) return false;
+      if (LobbyMsgType != other.LobbyMsgType) return false;
+      if(!playerDatas_.Equals(other.playerDatas_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -258,11 +315,14 @@ namespace GameData {
       int hash = 1;
       if (gameTransfrom_ != null) hash ^= GameTransfrom.GetHashCode();
       if (animParameters_ != null) hash ^= AnimParameters.GetHashCode();
-      if (MsgType != global::GameData.MsgType.AnimMsg) hash ^= MsgType.GetHashCode();
+      if (MsgType != global::GameData.MsgType.StringMsg) hash ^= MsgType.GetHashCode();
       if (Msg.Length != 0) hash ^= Msg.GetHashCode();
       if (ID != 0) hash ^= ID.GetHashCode();
       if (playerData_ != null) hash ^= PlayerData.GetHashCode();
       if (roomData_ != null) hash ^= RoomData.GetHashCode();
+      if (RoomMsgType != global::GameData.RoomMsgType.JoinRoomMsg) hash ^= RoomMsgType.GetHashCode();
+      if (LobbyMsgType != global::GameData.LobbyMsgType.LobbyAnimMsg) hash ^= LobbyMsgType.GetHashCode();
+      hash ^= playerDatas_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -289,7 +349,7 @@ namespace GameData {
         output.WriteRawTag(18);
         output.WriteMessage(AnimParameters);
       }
-      if (MsgType != global::GameData.MsgType.AnimMsg) {
+      if (MsgType != global::GameData.MsgType.StringMsg) {
         output.WriteRawTag(24);
         output.WriteEnum((int) MsgType);
       }
@@ -309,6 +369,15 @@ namespace GameData {
         output.WriteRawTag(58);
         output.WriteMessage(RoomData);
       }
+      if (RoomMsgType != global::GameData.RoomMsgType.JoinRoomMsg) {
+        output.WriteRawTag(64);
+        output.WriteEnum((int) RoomMsgType);
+      }
+      if (LobbyMsgType != global::GameData.LobbyMsgType.LobbyAnimMsg) {
+        output.WriteRawTag(72);
+        output.WriteEnum((int) LobbyMsgType);
+      }
+      playerDatas_.WriteTo(output, _repeated_playerDatas_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -327,7 +396,7 @@ namespace GameData {
         output.WriteRawTag(18);
         output.WriteMessage(AnimParameters);
       }
-      if (MsgType != global::GameData.MsgType.AnimMsg) {
+      if (MsgType != global::GameData.MsgType.StringMsg) {
         output.WriteRawTag(24);
         output.WriteEnum((int) MsgType);
       }
@@ -347,6 +416,15 @@ namespace GameData {
         output.WriteRawTag(58);
         output.WriteMessage(RoomData);
       }
+      if (RoomMsgType != global::GameData.RoomMsgType.JoinRoomMsg) {
+        output.WriteRawTag(64);
+        output.WriteEnum((int) RoomMsgType);
+      }
+      if (LobbyMsgType != global::GameData.LobbyMsgType.LobbyAnimMsg) {
+        output.WriteRawTag(72);
+        output.WriteEnum((int) LobbyMsgType);
+      }
+      playerDatas_.WriteTo(ref output, _repeated_playerDatas_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -363,7 +441,7 @@ namespace GameData {
       if (animParameters_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(AnimParameters);
       }
-      if (MsgType != global::GameData.MsgType.AnimMsg) {
+      if (MsgType != global::GameData.MsgType.StringMsg) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) MsgType);
       }
       if (Msg.Length != 0) {
@@ -378,6 +456,13 @@ namespace GameData {
       if (roomData_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(RoomData);
       }
+      if (RoomMsgType != global::GameData.RoomMsgType.JoinRoomMsg) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) RoomMsgType);
+      }
+      if (LobbyMsgType != global::GameData.LobbyMsgType.LobbyAnimMsg) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) LobbyMsgType);
+      }
+      size += playerDatas_.CalculateSize(_repeated_playerDatas_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -402,7 +487,7 @@ namespace GameData {
         }
         AnimParameters.MergeFrom(other.AnimParameters);
       }
-      if (other.MsgType != global::GameData.MsgType.AnimMsg) {
+      if (other.MsgType != global::GameData.MsgType.StringMsg) {
         MsgType = other.MsgType;
       }
       if (other.Msg.Length != 0) {
@@ -423,6 +508,13 @@ namespace GameData {
         }
         RoomData.MergeFrom(other.RoomData);
       }
+      if (other.RoomMsgType != global::GameData.RoomMsgType.JoinRoomMsg) {
+        RoomMsgType = other.RoomMsgType;
+      }
+      if (other.LobbyMsgType != global::GameData.LobbyMsgType.LobbyAnimMsg) {
+        LobbyMsgType = other.LobbyMsgType;
+      }
+      playerDatas_.Add(other.playerDatas_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -478,6 +570,18 @@ namespace GameData {
             input.ReadMessage(RoomData);
             break;
           }
+          case 64: {
+            RoomMsgType = (global::GameData.RoomMsgType) input.ReadEnum();
+            break;
+          }
+          case 72: {
+            LobbyMsgType = (global::GameData.LobbyMsgType) input.ReadEnum();
+            break;
+          }
+          case 82: {
+            playerDatas_.AddEntriesFrom(input, _repeated_playerDatas_codec);
+            break;
+          }
         }
       }
     #endif
@@ -531,6 +635,18 @@ namespace GameData {
               RoomData = new global::GameData.RoomData();
             }
             input.ReadMessage(RoomData);
+            break;
+          }
+          case 64: {
+            RoomMsgType = (global::GameData.RoomMsgType) input.ReadEnum();
+            break;
+          }
+          case 72: {
+            LobbyMsgType = (global::GameData.LobbyMsgType) input.ReadEnum();
+            break;
+          }
+          case 82: {
+            playerDatas_.AddEntriesFrom(ref input, _repeated_playerDatas_codec);
             break;
           }
         }
@@ -2238,6 +2354,7 @@ namespace GameData {
     public RoomData(RoomData other) : this() {
       roomID_ = other.roomID_;
       roomName_ = other.roomName_;
+      maxPeople_ = other.maxPeople_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2271,6 +2388,18 @@ namespace GameData {
       }
     }
 
+    /// <summary>Field number for the "MaxPeople" field.</summary>
+    public const int MaxPeopleFieldNumber = 3;
+    private int maxPeople_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int MaxPeople {
+      get { return maxPeople_; }
+      set {
+        maxPeople_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2288,6 +2417,7 @@ namespace GameData {
       }
       if (RoomID != other.RoomID) return false;
       if (RoomName != other.RoomName) return false;
+      if (MaxPeople != other.MaxPeople) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2297,6 +2427,7 @@ namespace GameData {
       int hash = 1;
       if (RoomID != 0) hash ^= RoomID.GetHashCode();
       if (RoomName != 0) hash ^= RoomName.GetHashCode();
+      if (MaxPeople != 0) hash ^= MaxPeople.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2323,6 +2454,10 @@ namespace GameData {
         output.WriteRawTag(16);
         output.WriteInt32(RoomName);
       }
+      if (MaxPeople != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(MaxPeople);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2341,6 +2476,10 @@ namespace GameData {
         output.WriteRawTag(16);
         output.WriteInt32(RoomName);
       }
+      if (MaxPeople != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(MaxPeople);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2356,6 +2495,9 @@ namespace GameData {
       }
       if (RoomName != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(RoomName);
+      }
+      if (MaxPeople != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(MaxPeople);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2374,6 +2516,9 @@ namespace GameData {
       }
       if (other.RoomName != 0) {
         RoomName = other.RoomName;
+      }
+      if (other.MaxPeople != 0) {
+        MaxPeople = other.MaxPeople;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2398,6 +2543,10 @@ namespace GameData {
             RoomName = input.ReadInt32();
             break;
           }
+          case 24: {
+            MaxPeople = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -2419,6 +2568,10 @@ namespace GameData {
           }
           case 16: {
             RoomName = input.ReadInt32();
+            break;
+          }
+          case 24: {
+            MaxPeople = input.ReadInt32();
             break;
           }
         }

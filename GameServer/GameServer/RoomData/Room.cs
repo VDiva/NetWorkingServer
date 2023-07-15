@@ -3,6 +3,7 @@ using GameServer.GameTool;
 using GameServer.Manager;
 using NetWorkingServer;
 using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,11 @@ namespace GameServer.RoomData
 {
     public class Room
     {
-        public string RoomName;
+        public string RoomName="房间";
         public int MaxPeople;
         List<Client> clients;
         private ConcurrentQueue<Msg> MessageQueue;
-        int RoomId;
+        public int RoomId;
         public Room(int RoomId) {
             MessageQueue = new ConcurrentQueue<Msg>();
             this.RoomId = RoomId;
@@ -35,54 +36,61 @@ namespace GameServer.RoomData
             this.MaxPeople = MaxPeople;
         }
 
-        public bool JoinRoom(ref Msg msg)
+        public void JoinRoom(ref Msg msg)
         {
-            if(clients.Count>MaxPeople) return false;
+            
             msg.client.IsJoinRoom = true;
             msg.client.RoomID = RoomId;
             clients.Add(msg.client);
 
-            Data data = new Data { MsgType=MsgType.JoinRoomCallBack };
-            foreach(Client client in clients)
+            Data data = new Data {
+                MsgType = MsgType.RoomMsg,
+                RoomMsgType = RoomMsgType.JoinRoomCallBack,
+                RoomData = new GameData.RoomData {
+                    RoomID = RoomId,
+                },
+               
+            };
+
+            for(int i = 0;i<clients.Count;i++)
             {
-                if (client.ID != msg.client.ID)
-                {
-                    data.PlayerData = new GameData.PlayerData { 
-                        ID = client.ID,
-                    };
-                    msg.client.SendMessage(MsgTool.Serialization(data));
+                data.PlayerDatas.Add(new PlayerData { ID = clients[i].ID });
+            }
+            msg.client.SendMessage(MsgTool.Serialization(data));
+            data.PlayerDatas.Clear();
 
-                    data.PlayerData = new GameData.PlayerData
-                    {
-                        ID = msg.client.ID,
-                    };
-
-                   client.SendMessage(MsgTool.Serialization(data));
-                }
+            data.PlayerDatas.Add(new PlayerData { ID = msg.client.ID });
+            for (int i = 0; i < clients.Count; i++)
+            {
+                clients[i].SendMessage(MsgTool.Serialization(data));
             }
 
+            
 
             DebugLog.LogWarn("加入房间成功");
-            return true;
+           
         }
 
 
 
-        public void BlackRoom(ref Msg msg)
+        public void BlackRoom(ref Client client)
         {
             Data data = new Data();
             try
             {
 
-                clients.Remove(msg.client);
-                msg.client.IsJoinRoom= false;
-                data.MsgType = MsgType.BlackRoomSucceed;
-            }catch (Exception ex)
+                clients.Remove(client);
+                client.IsJoinRoom= false;
+                data.MsgType = MsgType.RoomMsg;
+                data.RoomMsgType = RoomMsgType.BlackRoomSucceed;
+                client.SendMessage(MsgTool.Serialization(data));
+            }
+            catch (Exception ex)
             {
                 DebugLog.LogError(ex.Message);
-                data.MsgType = MsgType.BlackRoomError;
+                
             }
-            msg.client.SendMessage(MsgTool.Serialization(data));
+            
 
 
 
@@ -99,27 +107,33 @@ namespace GameServer.RoomData
         }
 
 
+
         public void UpData()
         {
-            while (MessageQueue.Count > 0)
+            ThreadPool.QueueUserWorkItem((t) =>
             {
-                if (MessageQueue.TryDequeue(out Msg msg))
+                while (MessageQueue.Count > 0)
                 {
-                    MessageHandle(ref msg);
+                    if (MessageQueue.TryDequeue(out Msg msg))
+                    {
+                        MessageHandle(ref msg);
+                    }
                 }
-            }
+            });
         }
+
+
 
         private void MessageHandle(ref Msg msg)
         {
 
-            switch (msg.data.MsgType)
+            switch (msg.data.RoomMsgType)
             {
                 
-                case MsgType.AnimMsg:
+                case RoomMsgType.RoomAnimMsg:
                     UpdataAnim(ref msg);
                     break;
-                case MsgType.TransformMsg:
+                case RoomMsgType.RoomTransformMsg:
                     UpdataTransform(ref msg);
                     break;
                
@@ -130,7 +144,7 @@ namespace GameServer.RoomData
         {
             foreach (var item in clients)
             {
-                if (item.ID != msg.client.ID)
+                if (item.ID != msg.data.PlayerData.ID)
                 {
                     item.SendMessage(MsgTool.Serialization(msg.data));
                 }   
@@ -139,22 +153,27 @@ namespace GameServer.RoomData
 
         private void UpdataTransform(ref Msg msg)
         {
-            foreach (var item in clients)
+            for (int i=0;i<clients.Count;i++)
             {
-                if (item.ID != msg.client.ID)
+                if (clients[i].ID != msg.data.PlayerData.ID)
                 {
-                    item.SendMessage(MsgTool.Serialization(msg.data));
+                    try
+                    {
+                        clients[i].SendMessageAsyn(MsgTool.Serialization(msg.data));
+                    }
+                    catch (Exception ex)
+                    {
+                        DebugLog.LogError(RoomName + ": " + ex.Message);
+                    }
                 }
             }
         }
 
 
-        public void RemoveClient(ref Client client)
-        {
-            clients.Remove(client);
-            client.socket.Close();
-            client.socket.Dispose();
-        }
+        
+
+
+        
 
 
 

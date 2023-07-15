@@ -18,6 +18,7 @@ namespace GameServer
 
         public void OnDisConnectToServer(ref Client client)
         {
+            DebugLog.LogWarn(client.ID + ":断开了链接");
             ClientManager.Instance.RemoveClient(ref client);
         }
 
@@ -25,7 +26,7 @@ namespace GameServer
 
         public void OnMessage(byte[] data, ref Client client)
         {
-            DebugLog.LogWarn(client.RoomID.ToString());
+            
             try
             {
                 Data value = MsgTool.DeSerialization<Data>(data);

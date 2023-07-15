@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "SZ48sqUQdmTkAEIRZjhF63KFAa2kTFaUl1J8Fkzq7ShbUvURMwZAjrYzE3trjeka5V6J7+v+PmbjLe8yGZKpnQ==",
+  "dgSpecHash": "ERu4H6sezXE5K2VSh8KaChbMP7ozbMtV2nvBTKjEHrtZ1aU2BWpTcYQAtSWVxXqUBvpl7MoHKWaT97NBnWfEvg==",
   "success": true,
-  "projectFilePath": "D:\\ME\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer.csproj",
+  "projectFilePath": "D:\\Github\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer\\NetWorkingServer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\s\\.nuget\\packages\\google.protobuf\\3.23.4\\google.protobuf.3.23.4.nupkg.sha512",
-    "C:\\Users\\s\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\smr\\.nuget\\packages\\google.protobuf\\3.23.4\\google.protobuf.3.23.4.nupkg.sha512",
+    "C:\\Users\\smr\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }

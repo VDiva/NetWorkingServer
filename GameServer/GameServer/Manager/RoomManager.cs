@@ -25,7 +25,7 @@ namespace GameServer.Manager
 
         private int RoomID = 1;
 
-        private int DefMaxPeople = 2;
+        private int DefMaxPeople = 4;
         public RoomManager() {
             roomQueue = new ConcurrentQueue<Room>();
             rooms = new ConcurrentDictionary<int, Room>();
@@ -60,11 +60,13 @@ namespace GameServer.Manager
             Data data = new Data { RoomData = msg.data.RoomData };
             if (isJoin)
             {
-                data.MsgType = MsgType.CreateRoomMsgSucceed;
+                data.MsgType = MsgType.RoomMsg;
+                data.RoomMsgType = RoomMsgType.CreateRoomMsgSucceed;
             }
             else
             {
-                data.MsgType = MsgType.CreateRoomMsgError;
+                data.MsgType = MsgType.RoomMsg;
+                data.RoomMsgType = RoomMsgType.CreateRoomMsgSucceed;
             }
 
             msg.client.SendMessage(MsgTool.Serialization(data));
@@ -74,48 +76,29 @@ namespace GameServer.Manager
 
         public void JoinRandomRoom(ref Msg msg)
         {
-            bool isJoin=false;
+            
+           
             if (rooms.Count > 0)
             {
-                bool isHas = false;
+                
                 foreach (var room in rooms.Values)
                 {
                     if (!room.IsFullof())
                     {
                         room.JoinRoom(ref msg);
-                        isHas = true;
-                        isJoin=true;
-                        break;
+                        
+                        //data.RoomData.RoomName = room.RoomName;
+
+                        return;
                     }
                 }
-
-                if (!isHas)
-                {
-                    if (roomQueue.TryDequeue(out Room room))
-                    {
-                        room.Init(DefMaxPeople);
-                        room.JoinRoom(ref msg);
-                        isJoin = true;
-                    }
-                    else
-                    {
-                        Room r = new Room(RoomID);
-                        r.JoinRoom(ref msg);
-                        r.Init(DefMaxPeople);
-                        rooms.TryAdd(RoomID, r);
-                        isJoin = true;
-                        RoomID += 1;
-                    }
-                }
-
             }
-            else
-            {
-                if (roomQueue.TryDequeue(out Room room))
+            
+                if (roomQueue.TryDequeue(out Room room1))
                 {
-                    room.Init(DefMaxPeople);
-                    room.JoinRoom(ref msg);
-                    isJoin = true;
+                    room1.Init(DefMaxPeople);
+                    room1.JoinRoom(ref msg);
+                   
                 }
                 else
                 {
@@ -123,24 +106,11 @@ namespace GameServer.Manager
                     r.JoinRoom(ref msg);
                     r.Init(DefMaxPeople);
                     rooms.TryAdd(RoomID, r);
-                    isJoin = true;
                     RoomID += 1;
                 }
-            }
             
             
             
-            Data data = new Data { RoomData=msg.data.RoomData };
-            if(isJoin)
-            {
-                data.MsgType = MsgType.JoinRandomRoomMsgSucceed;
-            }
-            else
-            {
-                data.MsgType = MsgType.JoinRandomRoomMsgError;
-            }
-
-            msg.client.SendMessage(MsgTool.Serialization(data));
 
         }
 
@@ -149,12 +119,21 @@ namespace GameServer.Manager
             if(rooms.TryGetValue(msg.data.RoomData.RoomID,out Room room))
             {
                 room.JoinRoom(ref msg);
-                Data data = new Data { MsgType = MsgType.JoinRoomMsgSucceed,RoomData=msg.data.RoomData };
+                Data data = new Data { 
+                    MsgType = MsgType.RoomMsg,
+                    RoomMsgType=RoomMsgType.JoinRandomRoomMsgSucceed,
+                    RoomData=msg.data.RoomData 
+                };
                 msg.client.SendMessage(MsgTool.Serialization(data));
             }
             else
             {
-                Data data = new Data { MsgType = MsgType.JoinRoomMsgError };
+                Data data = new Data
+                {
+                    MsgType = MsgType.RoomMsg,
+                    RoomMsgType = RoomMsgType.JoinRoomMsgError,
+                    RoomData = msg.data.RoomData
+                };
                 msg.client.SendMessage(MsgTool.Serialization(data));
             }
         }
@@ -163,9 +142,13 @@ namespace GameServer.Manager
         {
             try
             {
-                if (MessageQueue.TryDequeue(out Msg msg))
+                while(MessageQueue.Count>0)
                 {
-                    MessageHandle(ref msg);
+                    if (MessageQueue.TryDequeue(out Msg msg))
+                    {
+                        
+                        MessageHandle(ref msg);
+                    }
                 }
             }
             catch (Exception ex)
@@ -178,30 +161,23 @@ namespace GameServer.Manager
         private void MessageHandle(ref Msg msg)
         {
             bool isHas = rooms.TryGetValue(msg.client.RoomID, out Room room);
-            switch (msg.data.MsgType)
+            switch (msg.data.RoomMsgType)
             {
-                
-                case MsgType.AnimMsg:
-                    if (isHas)
-                    {
-                        room?.AddMessage(ref msg);
-                    }
+                case RoomMsgType.CreateRoomMsg:
+                    CreateRoom(msg.data.RoomData.MaxPeople,ref msg);
                     break;
-                case MsgType.TransformMsg:
-                    if (isHas)
-                    {
-                        room?.AddMessage(ref msg);
-                    }
-                    break;
-                case MsgType.JoinRandomRoomMsg:
+                case RoomMsgType.JoinRandomRoomMsg:
                     JoinRandomRoom(ref msg);
                     break;
-                case MsgType.JoinRoomMsg:
+                case RoomMsgType.JoinRoomMsg:
                     JoinRoom(ref msg);
                     break;
-                case MsgType.CreateRoomMsg: 
+                case RoomMsgType.BlackRoom:
+                    BlackRoom(ref msg.client);
                     break;
-                
+                case RoomMsgType.RoomTransformMsg:
+                    room?.AddMessage(ref msg);  
+                    break;
             }
         }
 
@@ -214,12 +190,12 @@ namespace GameServer.Manager
         }
 
 
-        public void RemoveClient(ref Client client)
+        public void BlackRoom(ref Client client)
         {
             if(rooms.TryGetValue(client.RoomID,out Room room))
             {
 
-                room.RemoveClient(ref client);
+                room.BlackRoom(ref client);
                 
             }
         }
